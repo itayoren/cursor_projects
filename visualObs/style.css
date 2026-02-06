@@ -11,6 +11,29 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Scroll indicator for Overview section */
+.scroll-indicator {
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-indicator:hover {
+  opacity: 1;
+}
+
+/* Problem statement fills viewport initially */
+#overview-section > h1:first-of-type,
+#overview-section > h1:first-of-type ~ .bg-sf-card:first-of-type,
+#overview-section > h1:first-of-type ~ .grid,
+#overview-section > h1:first-of-type ~ .bg-gradient-to-r,
+#overview-section > .scroll-indicator {
+  /* Problem section content */
+}
+
+#overview-section {
+  scroll-behavior: smooth;
+}
+
 /* Main Tab Navigation (PRD vs Prototype) */
 .main-tab-btn {
   background-color: transparent;
