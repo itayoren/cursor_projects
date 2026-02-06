@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Value Meter | PRD & Prototype</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'sf-blue': '#0176D3',
+            'sf-blue-light': '#1B96FF',
+            'sf-blue-dark': '#014486',
+            'sf-success': '#2E844A',
+            'sf-warning': '#DD7A01',
+            'sf-error': '#BA0517',
+            'sf-gray': '#706E6B',
+            'sf-bg': '#F3F3F3',
+            'sf-card': '#FFFFFF',
+            'sf-text': '#181818',
+            'sf-border': '#DDDBDA'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-sf-bg min-h-screen">
+  <!-- Top Navigation -->
+  <header class="bg-sf-blue-dark text-white shadow-lg fixed top-0 left-0 right-0 z-50">
+    <div class="px-6 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2">
+          <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2"/>
+            <circle cx="16" cy="16" r="6" fill="currentColor"/>
+            <path d="M16 6V10M16 22V26M6 16H10M22 16H26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <span class="text-xl font-bold">Value Meter PRD</span>
+            <p class="text-xs opacity-70">Written by Itay Oren • Feb 2026</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Main Tab Navigation -->
+      <nav class="flex items-center gap-1" role="tablist" aria-label="Main navigation">
+        <button 
+          class="main-tab-btn active px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+          data-main-tab="prd"
+          role="tab"
+          aria-selected="true"
+          tabindex="0"
+        >
+          📄 PRD Document
+        </button>
+        <button 
+          class="main-tab-btn px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+          data-main-tab="prototype"
+          role="tab"
+          aria-selected="false"
+          tabindex="0"
+        >
+          🚀 Prototype
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <div class="pt-16">
+    <!-- PRD Section -->
+    <div id="prd-section" class="main-panel">
+      <!-- Central Tab Navigation -->
+      <div class="bg-sf-card border-b border-sf-border sticky top-16 z-40">
+        <nav class="max-w-5xl mx-auto px-4" aria-label="PRD sections">
+          <div class="flex items-center gap-1 overflow-x-auto py-2 prd-tabs-container">
+            <button 
+              class="prd-nav-btn active px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap"
+              data-section="overview"
+              tabindex="0"
+            >
+              Overview
+            </button>
+            <button 
+              class="prd-nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap"
+              data-section="objectives"
+              tabindex="0"
+            >
+              Objectives
+            </button>
+            <button 
+              class="prd-nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap"
+              data-section="requirements"
+              tabindex="0"
+            >
+              Requirements
+            </button>
+            <button 
+              class="prd-nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap"
+              data-section="exploration"
+              tabindex="0"
+            >
+              Exploration
+            </button>
+            <button 
+              class="prd-nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap"
+              data-section="timeline"
+              tabindex="0"
+            >
+              Timeline
+            </button>
+            <button 
+              class="prd-nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap"
+              data-section="vivint"
+              tabindex="0"
+            >
+              Vivint's Use Case
+            </button>
+          </div>
+        </nav>
+      </div>
+
+      <!-- PRD Content -->
+      <main class="max-w-6xl mx-auto p-8">
+          <!-- Overview (Problem + Product Overview) -->
+          <section id="overview-section" class="prd-content">
+            <!-- Problem Statement -->
+            <h1 class="text-3xl font-bold text-sf-text mb-6">Problem Statement</h1>
+            
+            <div class="bg-sf-card rounded-xl p-6 border border-sf-border mb-6">
+              <p class="text-sf-text leading-relaxed text-lg">
+                Many enterprise customers use TechSee's solution of <strong>Visual Agentic AI</strong> but struggle to quantify the actual impact on their bottom line.
+              </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <div class="bg-sf-card rounded-xl p-5 border border-sf-border">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="p-2 bg-sf-blue/10 rounded-lg">
+                    <svg class="w-5 h-5 text-sf-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                  </div>
+                  <h3 class="font-semibold text-sf-text">ROI Question</h3>
+                </div>
+                <p class="text-sf-gray">"What's the ROI of using Sophie?"</p>
+              </div>
+              
+              <div class="bg-sf-card rounded-xl p-5 border border-sf-border">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="p-2 bg-sf-success/10 rounded-lg">
+                    <svg class="w-5 h-5 text-sf-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                    </svg>
+                  </div>
+                  <h3 class="font-semibold text-sf-text">Improvement Question</h3>
+                </div>
+                <p class="text-sf-gray">"How can I improve my business using Sophie?"</p>
+              </div>
+            </div>
+            
+            <div class="bg-gradient-to-r from-sf-blue/5 to-sf-blue-light/5 rounded-xl p-6 border border-sf-blue/20 mb-10">
+              <p class="text-sf-text font-medium">
+                💡 We'd like to help our customers clearly see the value our platform delivers in <strong>measurable, visual ways</strong>.
+              </p>
+            </div>
+
+            <!-- Product Overview -->
+            <h2 class="text-2xl font-bold text-sf-text mb-6">Product Overview</h2>
+            
+            <div class="bg-sf-card rounded-xl p-6 border border-sf-border mb-6">
+              <p class="text-sf-text leading-relaxed text-lg">
+                The <strong>Value Meter dashboard experience</strong> transforms raw operational performance data into actionable business insights within the Agentforce ecosystem.
+              </p>
+            </div>
+            
+            <div class="bg-sf-card rounded-xl p-6 border border-sf-border">
+              <h3 class="font-semibold text-sf-text mb-4">It aims to help enterprise customers:</h3>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <span class="flex-shrink-0 w-6 h-6 bg-sf-blue/10 rounded-full flex items-center justify-center text-sf-blue text-sm">1</span>
+                  <span class="text-sf-text">Visualize the <strong>tangible ROI</strong> of the Sophie AI platform</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="flex-shrink-0 w-6 h-6 bg-sf-blue/10 rounded-full flex items-center justify-center text-sf-blue text-sm">2</span>
+                  <span class="text-sf-text">Focus on <strong>service efficiency</strong> and <strong>cost reduction</strong></span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="flex-shrink-0 w-6 h-6 bg-sf-blue/10 rounded-full flex items-center justify-center text-sf-blue text-sm">3</span>
+                  <span class="text-sf-text">Understand <strong>customer pain points</strong>, common failures, and ways to improve their offering</span>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- Key Objectives -->
+          <section id="objectives-section" class="prd-content hidden">
+            <h1 class="text-3xl font-bold text-sf-text mb-6">Key Objectives</h1>
+            
+            <div class="space-y-4">
+              <div class="bg-sf-card rounded-xl p-6 border border-sf-border">
+                <div class="flex items-start gap-4">
+                  <div class="p-3 bg-sf-blue/10 rounded-lg flex-shrink-0">
+                    <svg class="w-6 h-6 text-sf-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-sf-text text-lg mb-2">Quantify the Intangible</h3>
+                    <p class="text-sf-gray">Translate "seeing what the customer sees" into <strong>"time / money saved"</strong> via reduced truck rolls and improved First-Time Resolution (FTR).</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bg-sf-card rounded-xl p-6 border border-sf-border">
+                <div class="flex items-start gap-4">
+                  <div class="p-3 bg-sf-success/10 rounded-lg flex-shrink-0">
+                    <svg class="w-6 h-6 text-sf-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-sf-text text-lg mb-2">Native Integration</h3>
+                    <p class="text-sf-gray">Leverage Salesforce's <strong>Session Tracing Data Model (STDM)</strong> so that Sophie's data can be used in Agentforce's Observability features, standard Salesforce Reports, Dashboards, and CRM built-in flows.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bg-sf-card rounded-xl p-6 border border-sf-border">
+                <div class="flex items-start gap-4">
+                  <div class="p-3 bg-sf-warning/10 rounded-lg flex-shrink-0">
+                    <svg class="w-6 h-6 text-sf-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-sf-text text-lg mb-2">Executive Visibility</h3>
+                    <p class="text-sf-gray">Provide <strong>high-level insights</strong> for service leaders while giving <strong>granular operational data</strong> to team leads.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Assumptions -->
+            <h2 class="text-2xl font-bold text-sf-text mb-6 mt-10">Assumptions</h2>
+            
+            <div class="bg-sf-card rounded-xl p-6 border border-sf-border">
+              <ul class="space-y-4">
+                <li class="flex items-start gap-3">
+                  <span class="flex-shrink-0 w-2 h-2 bg-sf-blue rounded-full mt-2"></span>
+                  <span class="text-sf-text">Sophie visual agentic AI is an <strong>action within Agentforce's Service agent</strong></span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="flex-shrink-0 w-2 h-2 bg-sf-blue rounded-full mt-2"></span>
+                  <span class="text-sf-text">Sophie's input includes <strong>conversation context</strong> (customer details, intent summary)</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="flex-shrink-0 w-2 h-2 bg-sf-blue rounded-full mt-2"></span>
+                  <div class="text-sf-text">
+                    Sophie's output data is being stored as part of the <strong>Session Tracing Data Model</strong> in the customer's Data360
+                    <div class="mt-3 bg-sf-bg rounded-lg p-4">
+                      <p class="text-sm font-medium text-sf-gray mb-2">Output data includes:</p>
+                      <ul class="space-y-2 text-sm">
+                        <li><code class="bg-sf-border px-2 py-0.5 rounded">VisualOutput</code> - {Device: Text, DeviceVersion: Text, Output: Text}</li>
+                        <li><code class="bg-sf-border px-2 py-0.5 rounded">ConfidenceScore</code> - Float</li>
+                        <li><code class="bg-sf-border px-2 py-0.5 rounded">IsRetryNeeded</code> - Boolean</li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="flex-shrink-0 w-2 h-2 bg-sf-blue rounded-full mt-2"></span>
+                  <span class="text-sf-text">Sophie's data is linked to the <strong>Work Order</strong> and <strong>Service Appointment</strong> objects in Service Cloud</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="flex-shrink-0 w-2 h-2 bg-sf-blue rounded-full mt-2"></span>
+                  <span class="text-sf-text">Visual inputs should be <strong>stored for analysis</strong> and attached to WOs or Cases if created</span>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- Functional Requirements -->
+          <section id="requirements-section" class="prd-content hidden">
+            <!-- Functional Requirements -->
+            <h1 class="text-3xl font-bold text-sf-text mb-6">Functional Requirements</h1>
+            
+            <!-- P0 - Operational KPIs -->
+            <div class="mb-8">
+              <div class="flex items-center gap-2 mb-4">
+                <span class="px-2 py-1 bg-sf-error/10 text-sf-error text-xs font-bold rounded">P0</span>
+                <h3 class="text-xl font-semibold text-sf-text">Operational KPIs</h3>
+              </div>
+              
+              <div class="space-y-3">
+                <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
+                  <div class="flex items-start justify-between gap-4">
+                    <div>
+                      <h4 class="font-medium text-sf-text">FTR Rate Comparison</h4>
+                      <p class="text-sf-gray text-sm mt-1">Track and compare First-Time Resolution rates of Sophie vs. traditional voice or chat</p>
+                    </div>
+                    <span class="flex-shrink-0 px-2 py-1 bg-sf-success/10 text-sf-success text-xs rounded">High Impact</span>
+                  </div>
+                </div>
+                
+                <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
+                  <div class="flex items-start justify-between gap-4">
+                    <div>
+                      <h4 class="font-medium text-sf-text">Visual Accuracy Reporting</h4>
+                      <p class="text-sf-gray text-sm mt-1">Success rate of Sophie's visual AI in correctly identifying hardware components and guiding users to resolution</p>
+                    </div>
+                    <span class="flex-shrink-0 px-2 py-1 bg-sf-success/10 text-sf-success text-xs rounded">High Impact</span>
+                  </div>
+                </div>
+                
+                <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
+                  <div class="flex items-start justify-between gap-4">
+                    <div>
+                      <h4 class="font-medium text-sf-text">Visual AI Escalation Rate</h4>
+                      <p class="text-sf-gray text-sm mt-1">Reviewing sessions which have been using Sophie's action but were escalated over time</p>
+                    </div>
+                    <span class="flex-shrink-0 px-2 py-1 bg-sf-success/10 text-sf-success text-xs rounded">High Impact</span>
+                  </div>
+                </div>
+                
+                <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
+                  <div class="flex items-start justify-between gap-4">
+                    <div>
+                      <h4 class="font-medium text-sf-text">Resolution Rate by Product</h4>
+                      <p class="text-sf-gray text-sm mt-1">Identify which products require better training for Sophie</p>
+                    </div>
+                    <span class="flex-shrink-0 px-2 py-1 bg-sf-success/10 text-sf-success text-xs rounded">High Impact</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- P1 - Business Insights -->
+            <div class="mb-8">
+              <div class="flex items-center gap-2 mb-4">
+                <span class="px-2 py-1 bg-sf-warning/10 text-sf-warning text-xs font-bold rounded">P1</span>
+                <h3 class="text-xl font-semibold text-sf-text">Business Insights</h3>
+              </div>
+              
+              <div class="space-y-3">
+                <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
+                  <h4 class="font-medium text-sf-text">ROI Metric</h4>
+                  <p class="text-sf-gray text-sm mt-1">Customers will be able to report on the platform's ROI</p>
+                  <code class="mt-2 inline-block bg-sf-bg px-3 py-1 rounded text-sm text-sf-blue">(Visual Deflections) × (Cost per Truck Roll)</code>
+                </div>
+                
+                <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
+                  <h4 class="font-medium text-sf-text">Common Product Issues</h4>
+                  <p class="text-sf-gray text-sm mt-1">"Do we have a common issue in one of our products?" "Is there a location characteristic we should be aware of?"</p>
+                  <div class="mt-2 flex flex-wrap gap-2">
+                    <span class="px-2 py-1 bg-sf-bg text-sf-gray text-xs rounded">By Product</span>
+                    <span class="px-2 py-1 bg-sf-bg text-sf-gray text-xs rounded">By Geographic Location</span>
+                    <span class="px-2 py-1 bg-sf-bg text-sf-gray text-xs rounded">By Customer Segment</span>
+                  </div>
+                </div>
+                
+                <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
+                  <h4 class="font-medium text-sf-text">Product Price / Maintenance Rate</h4>
+                  <p class="text-sf-gray text-sm mt-1">Are our pricing worth the required maintenance?</p>
+                </div>
+                
+                <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
+                  <h4 class="font-medium text-sf-text">Sustainability Meter</h4>
+                  <p class="text-sf-gray text-sm mt-1">Track environmental impact through reduced truck rolls</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- P2 - Recommendations -->
+            <div class="mb-10">
+              <div class="flex items-center gap-2 mb-4">
+                <span class="px-2 py-1 bg-sf-gray/20 text-sf-gray text-xs font-bold rounded">P2</span>
+                <h3 class="text-xl font-semibold text-sf-text">Recommendations</h3>
+                <span class="text-xs text-sf-gray">(Requires research)</span>
+              </div>
+              
+              <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
+                <h4 class="font-medium text-sf-text mb-3">Proactive Performance Optimization</h4>
+                <ul class="space-y-2 text-sm text-sf-gray">
+                  <li class="flex items-start gap-2">
+                    <span class="text-sf-warning">•</span>
+                    "Visual accuracy is low on X product due to insufficient images in the db, load more images to train the model"
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-sf-blue">•</span>
+                    "Trending issue on product Y in the past 3 days, consider proactively publishing a known issue or a possible fix"
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Non-Functional Requirements -->
+            <h2 class="text-2xl font-bold text-sf-text mb-6">Non-Functional Requirements</h2>
+            
+            <div class="space-y-4">
+              <div class="bg-sf-card rounded-xl p-6 border border-sf-border">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="p-2 bg-sf-blue/10 rounded-lg">
+                    <svg class="w-5 h-5 text-sf-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                  </div>
+                  <h3 class="font-semibold text-sf-text">Latency</h3>
+                </div>
+                <p class="text-sf-gray">Data inputs from visual sessions must update the dashboard within <strong>5 minutes</strong> (as current STDM timelines)</p>
+              </div>
+              
+              <div class="bg-sf-card rounded-xl p-6 border border-sf-border">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="p-2 bg-sf-success/10 rounded-lg">
+                    <svg class="w-5 h-5 text-sf-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                  </div>
+                  <h3 class="font-semibold text-sf-text">Browser Compatibility</h3>
+                </div>
+                <p class="text-sf-gray">Must support all <strong>Salesforce-compatible browsers</strong> and <strong>iOS</strong></p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Exploration -->
+          <section id="exploration-section" class="prd-content hidden">
+            <h1 class="text-3xl font-bold text-sf-text mb-6">Exploration</h1>
+            <p class="text-sf-gray mb-6">Affect Agent decision based on Value Meter</p>
+            
+            <div class="bg-gradient-to-r from-sf-blue/5 to-sf-blue-light/5 rounded-xl p-6 border border-sf-blue/20 mb-6">
+              <p class="text-sf-text">
+                Since metrics are being calculated and tracked in <strong>near real time</strong>, we're able to close the loop back to Agentforce whenever there's a pattern that requires action.
+              </p>
+            </div>
+            
+            <div class="space-y-4">
+              <div class="bg-sf-card rounded-xl p-6 border border-sf-border">
+                <div class="flex items-start gap-4">
+                  <span class="flex-shrink-0 w-8 h-8 bg-sf-blue/10 rounded-full flex items-center justify-center text-sf-blue font-bold">1</span>
+                  <div>
+                    <h3 class="font-semibold text-sf-text mb-2">Visual Cross-Reference</h3>
+                    <p class="text-sf-gray text-sm">Cross reference between the visual input and historical data. Standard CRM objects rely on text data or customer descriptions, which can be vague or inaccurate (e.g., a customer saying "the light is off" when it is actually blinking). Not relying solely on customer description, but crossing the visual input reference with historical inputs can enrich the agent and ground it for better decision making.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bg-sf-card rounded-xl p-6 border border-sf-border">
+                <div class="flex items-start gap-4">
+                  <span class="flex-shrink-0 w-8 h-8 bg-sf-success/10 rounded-full flex items-center justify-center text-sf-success font-bold">2</span>
+                  <div>
+                    <h3 class="font-semibold text-sf-text mb-2">High Confidence Routing</h3>
+                    <p class="text-sf-gray text-sm">When understanding the user's request at the start of the session, the agent can call an action to query Value Meter's data (i.e. what's the resolution confidence for this device type) and route high confidence resolutions directly to Sophie.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bg-sf-card rounded-xl p-6 border border-sf-border">
+                <div class="flex items-start gap-4">
+                  <span class="flex-shrink-0 w-8 h-8 bg-sf-warning/10 rounded-full flex items-center justify-center text-sf-warning font-bold">3</span>
+                  <div>
+                    <h3 class="font-semibold text-sf-text mb-2">Low Accuracy Alert</h3>
+                    <p class="text-sf-gray text-sm">On a given day, if the accuracy rate is constantly low to more than 70% of the sessions AND 100+ sessions, produce an alert to the agent admin and immediately escalate sessions by skipping Sophie's action triggering.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bg-sf-card rounded-xl p-6 border border-sf-border">
+                <div class="flex items-start gap-4">
+                  <span class="flex-shrink-0 w-8 h-8 bg-sf-blue-light/10 rounded-full flex items-center justify-center text-sf-blue-light font-bold">4</span>
+                  <div>
+                    <h3 class="font-semibold text-sf-text mb-2">Similar Issues Learning</h3>
+                    <p class="text-sf-gray text-sm">When Sophie returns a low confidence output on a given device, an invocable action will be triggered to query STDM and look for similar use cases with successful resolution. These can be either Agent or Human resolved solutions and will be proposed to the end user.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Timeline & Roadmap -->
+          <section id="timeline-section" class="prd-content hidden">
+            <h1 class="text-3xl font-bold text-sf-text mb-8">Timeline & Roadmap</h1>
+            
+            <!-- Timeline Table -->
+            <div class="bg-sf-card rounded-xl border border-sf-border overflow-hidden">
+              <!-- Table Header -->
+              <div class="grid grid-cols-12 bg-sf-bg border-b border-sf-border">
+                <div class="col-span-2 px-4 py-3 text-sm font-semibold text-sf-text">Milestones</div>
+                <div class="col-span-5 px-4 py-3 text-sm font-semibold text-sf-text border-l border-sf-border">Objectives</div>
+                <div class="col-span-5 px-4 py-3 text-sm font-semibold text-sf-text border-l border-sf-border">Scope of Work</div>
+              </div>
+              
+              <!-- Beta Row -->
+              <div class="grid grid-cols-12 border-b border-sf-border">
+                <!-- Milestone -->
+                <div class="col-span-2 px-4 py-4 flex items-start">
+                  <div class="bg-sf-blue text-white rounded-lg px-3 py-2 text-center w-full">
+                    <div class="font-bold">Beta</div>
+                    <div class="text-xs opacity-80">(TDX '26)</div>
+                  </div>
+                </div>
+                <!-- Objectives -->
+                <div class="col-span-5 px-4 py-4 border-l border-sf-border">
+                  <ul class="space-y-2 text-sm text-sf-gray">
+                    <li class="flex items-start gap-2">
+                      <span class="text-sf-blue mt-0.5">•</span>
+                      <span>Create a custom dashboard to serve as a landing page within Agentforce Studio</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-sf-blue mt-0.5">•</span>
+                      <span>Store Sophie's data within STDM</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-sf-blue mt-0.5">•</span>
+                      <span>Calculate P1 metrics and add them to the SDM</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-sf-blue mt-0.5">•</span>
+                      <span>Embed Value Meter's dashboard within Agentforce Studio</span>
+                    </li>
+                  </ul>
+                </div>
+                <!-- Scope of Work -->
+                <div class="col-span-5 px-4 py-4 border-l border-sf-border">
+                  <ul class="space-y-2 text-sm text-sf-gray">
+                    <li class="flex items-start gap-2">
+                      <span class="text-sf-blue mt-0.5">•</span>
+                      <span class="text-sf-text">First-Time Resolution (FTR)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-sf-blue mt-0.5">•</span>
+                      <span class="text-sf-text">Visual accuracy</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-sf-blue mt-0.5">•</span>
+                      <span class="text-sf-text">Escalation rate</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-sf-blue mt-0.5">•</span>
+                      <span class="text-sf-text">Resolution rate by product</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- GA Row -->
+              <div class="grid grid-cols-12 border-b border-sf-border">
+                <!-- Milestone -->
+                <div class="col-span-2 px-4 py-4 flex items-start">
+                  <div class="bg-sf-success text-white rounded-lg px-3 py-2 text-center w-full">
+                    <div class="font-bold">GA</div>
+                    <div class="text-xs opacity-80">(May '26)</div>
+                  </div>
+                </div>
+                <!-- Objectives -->
+                <div class="col-span-5 px-4 py-4 border-l border-sf-border">
+                  <ul class="space-y-2 text-sm text-sf-gray">
+                    <li class="flex items-start gap-2">
+                      <span class="text-sf-success mt-0.5">•</span>
+                      <span>Add actionable business insights</span>
+                    </li>
+                  </ul>
+                </div>
+                <!-- Scope of Work -->
+                <div class="col-span-5 px-4 py-4 border-l border-sf-border">
+                  <p class="text-sm text-sf-gray mb-2">Add business insights tab and the following calculated metrics:</p>
+                  <ul class="space-y-2 text-sm text-sf-gray">
+                    <li class="flex items-start gap-2">
+                      <span class="text-sf-success mt-0.5">•</span>
+                      <span class="text-sf-text">ROI Metric</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-sf-success mt-0.5">•</span>
+                      <span class="text-sf-text">Common product issues</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-sf-success mt-0.5">•</span>
+                      <span class="text-sf-text">Product Price / Maintenance Rate</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-sf-success mt-0.5">•</span>
+                      <span class="text-sf-text">Sustainability Meter</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Recommendations Row -->
+              <div class="grid grid-cols-12 border-b border-sf-border">
+                <!-- Milestone -->
+                <div class="col-span-2 px-4 py-4 flex items-start">
+                  <div class="bg-sf-warning text-white rounded-lg px-3 py-2 text-center w-full">
+                    <div class="font-bold text-sm">Recommendations</div>
+                    <div class="text-xs opacity-80">(June '26)</div>
+                  </div>
+                </div>
+                <!-- Objectives -->
+                <div class="col-span-5 px-4 py-4 border-l border-sf-border">
+                  <ul class="space-y-2 text-sm text-sf-gray">
+                    <li class="flex items-start gap-2">
+                      <span class="text-sf-warning mt-0.5">•</span>
+                      <span>Recommendations and alerts</span>
+                    </li>
+                  </ul>
+                </div>
+                <!-- Scope of Work -->
+                <div class="col-span-5 px-4 py-4 border-l border-sf-border">
+                  <ul class="space-y-2 text-sm text-sf-gray">
+                    <li class="flex items-start gap-2">
+                      <span class="text-sf-warning mt-0.5">•</span>
+                      <span class="text-sf-text">Add a recommendation tab to Value Meter</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-sf-warning mt-0.5">•</span>
+                      <span class="text-sf-text">Integrate with Health monitoring to produce visual related alerts</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-sf-warning mt-0.5">•</span>
+                      <span class="text-sf-text">Ability to take action and route to Agent builder with clear recommendation</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-sf-warning mt-0.5">•</span>
+                      <span class="text-sf-text">Ability to report on how changes affected the metrics</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Automation Row -->
+              <div class="grid grid-cols-12">
+                <!-- Milestone -->
+                <div class="col-span-2 px-4 py-4 flex items-start">
+                  <div class="bg-sf-blue-light text-white rounded-lg px-3 py-2 text-center w-full">
+                    <div class="font-bold">Automation</div>
+                    <div class="text-xs opacity-80">(July '26)</div>
+                  </div>
+                </div>
+                <!-- Objectives -->
+                <div class="col-span-5 px-4 py-4 border-l border-sf-border">
+                  <ul class="space-y-2 text-sm text-sf-gray">
+                    <li class="flex items-start gap-2">
+                      <span class="text-sf-blue-light mt-0.5">•</span>
+                      <span>Automated Agentforce extension</span>
+                    </li>
+                  </ul>
+                </div>
+                <!-- Scope of Work -->
+                <div class="col-span-5 px-4 py-4 border-l border-sf-border">
+                  <ul class="space-y-2 text-sm text-sf-gray">
+                    <li class="flex items-start gap-2">
+                      <span class="text-sf-blue-light mt-0.5">•</span>
+                      <span class="text-sf-text">Automate the process of routing Agentforce's actions according to designated thresholds</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-sf-blue-light mt-0.5">•</span>
+                      <span class="text-sf-text">Report changes made within Value Meter</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Success Metrics -->
+            <h2 class="text-2xl font-bold text-sf-text mt-10 mb-6">Success Metrics</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="bg-sf-card rounded-xl p-6 border border-sf-border text-center">
+                <div class="w-12 h-12 bg-sf-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg class="w-6 h-6 text-sf-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                  </svg>
+                </div>
+                <h3 class="font-semibold text-sf-text mb-2">Adoption</h3>
+                <p class="text-sf-gray text-sm">% of Service Managers viewing the Value Meter weekly</p>
+              </div>
+              
+              <div class="bg-sf-card rounded-xl p-6 border border-sf-border text-center">
+                <div class="w-12 h-12 bg-sf-success/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg class="w-6 h-6 text-sf-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                </div>
+                <h3 class="font-semibold text-sf-text mb-2">Deflection Accuracy</h3>
+                <p class="text-sf-gray text-sm">Match rate between "Predicted Savings" and "Actual Accounting validation"</p>
+              </div>
+              
+              <div class="bg-sf-card rounded-xl p-6 border border-sf-border text-center">
+                <div class="w-12 h-12 bg-sf-warning/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg class="w-6 h-6 text-sf-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                  </svg>
+                </div>
+                <h3 class="font-semibold text-sf-text mb-2">Agentforce Activation</h3>
+                <p class="text-sf-gray text-sm">Number of automated flows triggered by Value Meter signals</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Vivint's E2E Use Case -->
+          <section id="vivint-section" class="prd-content hidden">
+            <h1 class="text-3xl font-bold text-sf-text mb-6">Vivint's E2E Use Case</h1>
+            
+            <!-- Company Overview -->
+            <div class="bg-sf-card rounded-xl p-6 border border-sf-border mb-6">
+              <div class="flex items-center gap-4 mb-4">
+                <img 
+                  src="vivint-logo.png" 
+                  alt="Vivint Logo" 
+                  class="h-8 object-contain"
+                />
+                <div>
+                  <h2 class="text-xl font-semibold text-sf-text">Company Overview</h2>
+                  <a href="https://www.vivint.com/" target="_blank" class="text-sf-blue text-sm hover:underline">vivint.com</a>
+                </div>
+              </div>
+              <p class="text-sf-text leading-relaxed">
+                <strong>Vivint</strong> provides integrated smart home systems (cameras, locks, sensors) that require precise installation and connectivity. Vivint is also an active <strong>Agentforce customer</strong>.
+              </p>
+            </div>
+
+            <!-- Problem & Context -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <div class="bg-sf-card rounded-xl p-5 border border-l-4 border-l-sf-error border-sf-border">
+                <h3 class="font-semibold text-sf-text mb-3 flex items-center gap-2">
+                  <svg class="w-5 h-5 text-sf-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                  </svg>
+                  The Problem
+                </h3>
+                <p class="text-sf-gray text-sm">Vivint faces <strong>high operational costs due to truck rolls</strong>. When a customer says, "My doorbell camera is offline," it is difficult to diagnose over the phone. Often, a technician is dispatched only to find the device was simply unplugged or needed a reset.</p>
+              </div>
+              
+              <div class="bg-sf-card rounded-xl p-5 border border-l-4 border-l-sf-warning border-sf-border">
+                <h3 class="font-semibold text-sf-text mb-3 flex items-center gap-2">
+                  <svg class="w-5 h-5 text-sf-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  The Context
+                </h3>
+                <p class="text-sf-gray text-sm">Vivint uses <strong>Agentforce to automate support</strong>, but they struggle to automate technical hardware troubleshooting because text-based AI cannot "see" the device status LED or wiring.</p>
+              </div>
+            </div>
+
+            <!-- The Opportunity -->
+            <div class="bg-gradient-to-r from-sf-success/5 to-sf-success/10 rounded-xl p-6 border border-sf-success/20 mb-8">
+              <h3 class="font-semibold text-sf-text mb-2 flex items-center gap-2">
+                <svg class="w-5 h-5 text-sf-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                The Opportunity
+              </h3>
+              <p class="text-sf-text">By using TechSee, Vivint can <strong>virtually visit the home</strong>. The challenge is proving the ROI of this technology to their CFO and knowing when it is safe to let an AI Agent handle the ticket autonomously.</p>
+            </div>
+
+            <!-- E2E Scenario -->
+            <h2 class="text-2xl font-bold text-sf-text mb-4">End-to-End Scenario: The "Offline Camera" Incident</h2>
+            <p class="text-sf-gray mb-6">This scenario demonstrates how Vivint leverages the <strong>Signal (Value Meter)</strong> and <strong>Action (Agentforce + Sophie)</strong> loop.</p>
+
+            <!-- Timeline -->
+            <div class="relative">
+              <!-- Timeline line -->
+              <div class="absolute left-6 top-0 bottom-0 w-0.5 bg-sf-border"></div>
+              
+              <!-- Phase 1: Signal -->
+              <div class="relative pl-16 pb-8">
+                <div class="absolute left-0 w-12 h-12 bg-sf-blue rounded-full flex items-center justify-center text-white font-bold text-lg">1</div>
+                <div class="bg-sf-card rounded-xl p-6 border border-sf-border">
+                  <span class="text-xs font-semibold text-sf-blue uppercase tracking-wide">Phase 1</span>
+                  <h3 class="text-xl font-semibold text-sf-text mt-1 mb-3">Signal</h3>
+                  <div class="bg-sf-bg rounded-lg p-4 mb-4">
+                    <p class="text-sf-text italic">"Gen 2 Doorbell connectivity issues are being resolved 92% of the time by visual AI."</p>
+                  </div>
+                  <p class="text-sf-gray text-sm mb-3">The Vivint Operations Manager gets a Value Meter alert on his email with a call to action.</p>
+                  <p class="text-sf-gray text-sm"><strong class="text-sf-text">Action:</strong> The Manager clicks a button within the email that leads to Agentforce's agent configuration. He sets a rule: <code class="bg-sf-border px-2 py-0.5 rounded text-xs">If Intent = 'Doorbell Offline' → Route to Sophie Visual Agent action</code></p>
+                </div>
+              </div>
+
+              <!-- Phase 2: Trigger -->
+              <div class="relative pl-16 pb-8">
+                <div class="absolute left-0 w-12 h-12 bg-sf-warning rounded-full flex items-center justify-center text-white font-bold text-lg">2</div>
+                <div class="bg-sf-card rounded-xl p-6 border border-sf-border">
+                  <span class="text-xs font-semibold text-sf-warning uppercase tracking-wide">Phase 2</span>
+                  <h3 class="text-xl font-semibold text-sf-text mt-1 mb-3">Trigger</h3>
+                  <p class="text-sf-gray text-sm mb-3">A Vivint customer, <strong>Sarah</strong>, notices her doorbell camera is not recording. She opens the Vivint app and chats with Agentforce's agent.</p>
+                  <div class="bg-sf-bg rounded-lg p-4 mb-3">
+                    <p class="text-sf-text italic">"My camera isn't working."</p>
+                  </div>
+                  <p class="text-sf-gray text-sm">Instead of queuing a human agent (which costs money) or sending a text article (which Sarah might ignore), <strong>Agentforce triggers the Sophie Visual Agent Action</strong> based on the high confidence signal from Value Meter.</p>
+                </div>
+              </div>
+
+              <!-- Phase 3: Action -->
+              <div class="relative pl-16 pb-8">
+                <div class="absolute left-0 w-12 h-12 bg-sf-success rounded-full flex items-center justify-center text-white font-bold text-lg">3</div>
+                <div class="bg-sf-card rounded-xl p-6 border border-sf-border">
+                  <span class="text-xs font-semibold text-sf-success uppercase tracking-wide">Phase 3</span>
+                  <h3 class="text-xl font-semibold text-sf-text mt-1 mb-3">Action</h3>
+                  <p class="text-sf-gray text-sm mb-4">Agentforce initiates the visual flow:</p>
+                  <div class="space-y-3">
+                    <div class="flex items-start gap-3">
+                      <span class="flex-shrink-0 w-6 h-6 bg-sf-success/10 rounded-full flex items-center justify-center text-sf-success text-sm">👁</span>
+                      <div>
+                        <p class="text-sf-text font-medium">Visual Recognition</p>
+                        <p class="text-sf-gray text-sm">Sophie asks Sarah to point her phone at the doorbell. Sophie recognizes the "Doorbell Gen 2" model and detects the status light is <strong>"Blinking Orange"</strong> (indicating Wi-Fi password error, not hardware failure).</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                      <span class="flex-shrink-0 w-6 h-6 bg-sf-success/10 rounded-full flex items-center justify-center text-sf-success text-sm">📱</span>
+                      <div>
+                        <p class="text-sf-text font-medium">AR Guidance</p>
+                        <p class="text-sf-gray text-sm">Sophie overlays Augmented Reality arrows on Sarah's screen, guiding her to press the reset button for 10 seconds.</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                      <span class="flex-shrink-0 w-6 h-6 bg-sf-success/10 rounded-full flex items-center justify-center text-sf-success text-sm">✓</span>
+                      <div>
+                        <p class="text-sf-text font-medium">Verification</p>
+                        <p class="text-sf-gray text-sm">Sophie watches the light turn <strong>"Solid Green"</strong> and confirms the device is back online.</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                      <span class="flex-shrink-0 w-6 h-6 bg-sf-success/10 rounded-full flex items-center justify-center text-sf-success text-sm">🎉</span>
+                      <div>
+                        <p class="text-sf-text font-medium">Resolution</p>
+                        <p class="text-sf-gray text-sm">The case is closed <strong>without a human agent ever touching it</strong>.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Phase 4: Feedback Loop -->
+              <div class="relative pl-16">
+                <div class="absolute left-0 w-12 h-12 bg-sf-blue-light rounded-full flex items-center justify-center text-white font-bold text-lg">4</div>
+                <div class="bg-sf-card rounded-xl p-6 border border-sf-border">
+                  <span class="text-xs font-semibold text-sf-blue-light uppercase tracking-wide">Phase 4</span>
+                  <h3 class="text-xl font-semibold text-sf-text mt-1 mb-3">Feedback Loop</h3>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-sf-bg rounded-lg p-4">
+                      <p class="text-sf-text font-medium mb-2">Data Capture</p>
+                      <p class="text-sf-gray text-sm">The image of the "Solid Green" light is saved to the Salesforce Case object as proof of resolution, ensuring human oversight and auditability.</p>
+                    </div>
+                    <div class="bg-sf-bg rounded-lg p-4">
+                      <p class="text-sf-text font-medium mb-2">Value Meter Update</p>
+                      <p class="text-sf-gray text-sm">The dashboard instantly updates. The "Truck Rolls Avoided" counter ticks up by <strong class="text-sf-success">+1</strong>, and the "Savings YTD" increases by <strong class="text-sf-success">$150</strong>.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+    </div>
+
+    <!-- Prototype Section -->
+    <div id="prototype-section" class="main-panel hidden">
+      <!-- Agentforce Studio Shell -->
+      <div class="flex flex-col h-[calc(100vh-64px)]">
+        <!-- Agentforce Header -->
+        <header class="bg-white border-b border-gray-200 px-4 py-2 flex items-center justify-between">
+          <div class="flex items-center gap-6">
+            <!-- Salesforce Logo -->
+            <div class="flex items-center gap-2">
+              <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none">
+                <circle cx="16" cy="16" r="15" fill="#00A1E0"/>
+                <path d="M10 12c0-2.2 1.8-4 4-4 1.5 0 2.8.8 3.5 2 .5-.3 1-.4 1.5-.4 2.2 0 4 1.8 4 4 0 .3 0 .6-.1.9 1.2.6 2.1 1.9 2.1 3.4 0 2.1-1.7 3.8-3.8 3.8H11c-2.2 0-4-1.8-4-4 0-1.8 1.2-3.3 2.8-3.8-.1-.3-.1-.6-.1-.9 0-.4.1-.7.2-1.1" fill="white"/>
+              </svg>
+              <span class="text-gray-800 font-semibold text-lg">Agentforce Studio</span>
+            </div>
+            <!-- Analytics Tab -->
+            <div class="flex items-center">
+              <span class="px-3 py-1.5 bg-blue-50 text-blue-600 rounded text-sm font-medium">Analytics</span>
+            </div>
+          </div>
+          
+          <!-- Search and Icons -->
+          <div class="flex items-center gap-4">
+            <div class="relative">
+              <input type="text" placeholder="Search..." class="pl-8 pr-4 py-1.5 bg-gray-100 border border-gray-200 rounded-lg text-sm w-48 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <svg class="w-4 h-4 text-gray-400 absolute left-2.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+            </div>
+            <div class="flex items-center gap-2">
+              <button class="p-2 hover:bg-gray-100 rounded-lg text-gray-500">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+              </button>
+              <button class="p-2 hover:bg-gray-100 rounded-lg text-gray-500">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </button>
+              <button class="p-2 hover:bg-gray-100 rounded-lg text-gray-500">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </button>
+              <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white text-sm font-medium ml-2">U</div>
+            </div>
+          </div>
+        </header>
+
+        <div class="flex flex-1 overflow-hidden">
+          <!-- Left Sidebar -->
+          <aside class="w-52 bg-white border-r border-gray-200 overflow-y-auto flex-shrink-0">
+            <!-- Build Section -->
+            <div class="py-3">
+              <p class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Build</p>
+              <nav class="space-y-0.5">
+                <a href="#" class="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                  Agents
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                  Tests
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6z"/></svg>
+                  Prompt Templates
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg>
+                  Data
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                  AI Models
+                </a>
+              </nav>
+            </div>
+            
+            <!-- Observe Section -->
+            <div class="py-3 border-t border-gray-100">
+              <p class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Observe</p>
+              <nav class="space-y-0.5">
+                <button 
+                  class="studio-nav-btn w-full flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 text-left"
+                  data-studio-view="analytics"
+                  tabindex="0"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                  Agent Analytics
+                </button>
+                <button 
+                  class="studio-nav-btn w-full flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 text-left"
+                  data-studio-view="sessions"
+                  tabindex="0"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                  Sessions & Intents
+                </button>
+                <button 
+                  class="studio-nav-btn active w-full flex items-center gap-3 px-4 py-2 text-sm bg-blue-50 text-blue-700 font-medium text-left"
+                  data-studio-view="valuemeter"
+                  tabindex="0"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="9" stroke-width="2"/>
+                    <circle cx="12" cy="12" r="3" fill="currentColor"/>
+                    <path stroke-linecap="round" stroke-width="2" d="M12 5v2M12 17v2M5 12h2M17 12h2"/>
+                  </svg>
+                  Value Meter
+                </button>
+                <button 
+                  class="studio-nav-btn w-full flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 text-left"
+                  data-studio-view="consumption"
+                  tabindex="0"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                  Consumption Cards
+                </button>
+              </nav>
+            </div>
+          </aside>
+
+          <!-- Main Content Area -->
+          <div class="flex-1 overflow-y-auto bg-gray-50">
+            <!-- Agent Analytics View (Full page image) -->
+            <div id="analytics-view" class="studio-view hidden">
+              <img src="agent-analytics.png" alt="Agent Analytics" class="w-full h-auto">
+            </div>
+
+            <!-- Sessions View (Full page image) -->
+            <div id="sessions-view" class="studio-view hidden">
+              <img src="sessions-intents.png" alt="Sessions & Intents" class="w-full h-auto">
+            </div>
+
+            <!-- Value Meter View (Dashboard) -->
+            <div id="valuemeter-view" class="studio-view">
+              <!-- Value Meter Header -->
+              <div class="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <svg class="w-6 h-6 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="12" cy="12" r="9" stroke-width="2"/>
+                    <circle cx="12" cy="12" r="3" fill="currentColor"/>
+                    <path stroke-linecap="round" stroke-width="2" d="M12 5v2M12 17v2M5 12h2M17 12h2"/>
+                  </svg>
+                  <div>
+                    <h2 class="text-lg font-semibold text-gray-800">Value Meter</h2>
+                    <p class="text-sm text-gray-500">Sophie Visual AI Performance</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center gap-2 bg-gray-100 rounded-lg px-3 py-2">
+                    <label for="dateRange" class="text-sm text-gray-500">Period:</label>
+                    <select id="dateRange" class="bg-transparent border-none text-gray-700 text-sm focus:outline-none cursor-pointer" aria-label="Select date range">
+                      <option value="7d">Last 7 Days</option>
+                      <option value="30d" selected>Last 30 Days</option>
+                      <option value="90d">Last 90 Days</option>
+                      <option value="ytd">Year to Date</option>
+                    </select>
+                  </div>
+                  <button 
+                    id="refreshBtn"
+                    class="p-2 hover:bg-gray-100 rounded-lg transition-colors text-gray-500"
+                    aria-label="Refresh dashboard data"
+                    tabindex="0"
+                  >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Dashboard Content -->
+              <main class="p-6">
+        <!-- Summary Cards -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6" aria-label="Key Performance Indicators">
+          <!-- FTR Card -->
+          <div class="bg-sf-card rounded-xl shadow-sm p-5 border border-sf-border hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between">
+              <div>
+                <p class="text-sf-gray text-sm font-medium">First-Time Resolution</p>
+                <p class="text-3xl font-bold text-sf-text mt-1" id="ftrValue">78.5%</p>
+                <div class="flex items-center gap-1 mt-2">
+                  <span class="text-sf-success text-sm font-medium flex items-center gap-1" id="ftrTrend">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+                    </svg>
+                    +12.3%
+                  </span>
+                  <span class="text-sf-gray text-xs">vs traditional</span>
+                </div>
+              </div>
+              <div class="p-3 bg-sf-blue/10 rounded-lg">
+                <svg class="w-6 h-6 text-sf-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Visual Accuracy Card -->
+          <div class="bg-sf-card rounded-xl shadow-sm p-5 border border-sf-border hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between">
+              <div>
+                <p class="text-sf-gray text-sm font-medium">Visual Accuracy</p>
+                <p class="text-3xl font-bold text-sf-text mt-1" id="accuracyValue">94.2%</p>
+                <div class="flex items-center gap-1 mt-2">
+                  <span class="text-sf-success text-sm font-medium flex items-center gap-1" id="accuracyTrend">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+                    </svg>
+                    +2.1%
+                  </span>
+                  <span class="text-sf-gray text-xs">vs last period</span>
+                </div>
+              </div>
+              <div class="p-3 bg-sf-success/10 rounded-lg">
+                <svg class="w-6 h-6 text-sf-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Escalation Rate Card -->
+          <div class="bg-sf-card rounded-xl shadow-sm p-5 border border-sf-border hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between">
+              <div>
+                <p class="text-sf-gray text-sm font-medium">Escalation Rate</p>
+                <p class="text-3xl font-bold text-sf-text mt-1" id="escalationValue">8.7%</p>
+                <div class="flex items-center gap-1 mt-2">
+                  <span class="text-sf-success text-sm font-medium flex items-center gap-1" id="escalationTrend">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                    </svg>
+                    -3.2%
+                  </span>
+                  <span class="text-sf-gray text-xs">vs last period</span>
+                </div>
+              </div>
+              <div class="p-3 bg-sf-warning/10 rounded-lg">
+                <svg class="w-6 h-6 text-sf-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- ROI Card -->
+          <div class="bg-sf-card rounded-xl shadow-sm p-5 border border-sf-border hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between">
+              <div>
+                <p class="text-sf-gray text-sm font-medium">Estimated ROI</p>
+                <p class="text-3xl font-bold text-sf-text mt-1" id="roiValue">$284K</p>
+                <div class="flex items-center gap-1 mt-2">
+                  <span class="text-sf-gray text-xs" id="roiSubtext">Saved in truck rolls</span>
+                </div>
+              </div>
+              <div class="p-3 bg-sf-blue-light/10 rounded-lg">
+                <svg class="w-6 h-6 text-sf-blue-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab Navigation -->
+        <div class="bg-sf-card rounded-xl shadow-sm border border-sf-border mb-6">
+          <nav class="flex border-b border-sf-border" role="tablist" aria-label="Dashboard sections">
+            <button 
+              class="tab-btn active px-6 py-4 text-sm font-medium border-b-2 border-sf-blue text-sf-blue"
+              data-tab="operational"
+              role="tab"
+              aria-selected="true"
+              aria-controls="operational-panel"
+              tabindex="0"
+            >
+              Operational KPIs
+            </button>
+            <button 
+              class="tab-btn px-6 py-4 text-sm font-medium border-b-2 border-transparent text-sf-gray hover:text-sf-text"
+              data-tab="insights"
+              role="tab"
+              aria-selected="false"
+              aria-controls="insights-panel"
+              tabindex="0"
+            >
+              Business Insights
+            </button>
+            <button 
+              class="tab-btn px-6 py-4 text-sm font-medium border-b-2 border-transparent text-sf-gray hover:text-sf-text"
+              data-tab="recommendations"
+              role="tab"
+              aria-selected="false"
+              aria-controls="recommendations-panel"
+              tabindex="0"
+            >
+              Recommendations
+            </button>
+          </nav>
+
+          <!-- Tab Panels -->
+          <div class="p-6">
+            <!-- Operational KPIs Panel -->
+            <div id="operational-panel" class="tab-panel" role="tabpanel" aria-labelledby="operational-tab">
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- FTR Comparison Chart -->
+                <div class="bg-sf-bg rounded-lg p-5">
+                  <h3 class="text-lg font-semibold text-sf-text mb-4">FTR: Sophie vs Traditional</h3>
+                  <div class="h-64">
+                    <canvas id="ftrComparisonChart"></canvas>
+                  </div>
+                </div>
+
+                <!-- Visual Accuracy Trend -->
+                <div class="bg-sf-bg rounded-lg p-5">
+                  <h3 class="text-lg font-semibold text-sf-text mb-4">Visual Accuracy Trend</h3>
+                  <div class="h-64">
+                    <canvas id="accuracyTrendChart"></canvas>
+                  </div>
+                </div>
+
+                <!-- Escalation Rate Over Time -->
+                <div class="bg-sf-bg rounded-lg p-5">
+                  <h3 class="text-lg font-semibold text-sf-text mb-4">Escalation Rate Over Time</h3>
+                  <div class="h-64">
+                    <canvas id="escalationChart"></canvas>
+                  </div>
+                </div>
+
+                <!-- Resolution by Product -->
+                <div class="bg-sf-bg rounded-lg p-5">
+                  <h3 class="text-lg font-semibold text-sf-text mb-4">Resolution Rate by Product</h3>
+                  <div class="h-64">
+                    <canvas id="productResolutionChart"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sessions Table -->
+              <div class="mt-6">
+                <h3 class="text-lg font-semibold text-sf-text mb-4">Recent Visual Sessions</h3>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-sm">
+                    <thead>
+                      <tr class="bg-sf-bg">
+                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Session ID</th>
+                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Device</th>
+                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Confidence</th>
+                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Resolution</th>
+                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Status</th>
+                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Time</th>
+                      </tr>
+                    </thead>
+                    <tbody id="sessionsTableBody">
+                      <!-- Populated by JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Business Insights Panel -->
+            <div id="insights-panel" class="tab-panel hidden" role="tabpanel" aria-labelledby="insights-tab">
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- ROI Calculator -->
+                <div class="lg:col-span-2 bg-sf-bg rounded-lg p-5">
+                  <h3 class="text-lg font-semibold text-sf-text mb-4">ROI Calculator</h3>
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
+                      <p class="text-sf-gray text-sm">Visual Deflections</p>
+                      <p class="text-2xl font-bold text-sf-text" id="deflectionsValue">1,847</p>
+                    </div>
+                    <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
+                      <p class="text-sf-gray text-sm">Avg. Truck Roll Cost</p>
+                      <div class="flex items-center gap-2">
+                        <span class="text-xl font-bold text-sf-text">$</span>
+                        <input 
+                          type="number" 
+                          id="truckRollCost" 
+                          value="154" 
+                          class="text-2xl font-bold text-sf-text bg-transparent border-b border-sf-border w-20 focus:outline-none focus:border-sf-blue"
+                          aria-label="Average truck roll cost"
+                        >
+                      </div>
+                    </div>
+                    <div class="bg-sf-card rounded-lg p-4 border border-sf-blue">
+                      <p class="text-sf-gray text-sm">Total Savings</p>
+                      <p class="text-2xl font-bold text-sf-blue" id="totalSavings">$284,438</p>
+                    </div>
+                  </div>
+                  <div class="h-48">
+                    <canvas id="roiTrendChart"></canvas>
+                  </div>
+                </div>
+
+                <!-- Sustainability Meter -->
+                <div class="bg-sf-bg rounded-lg p-5">
+                  <h3 class="text-lg font-semibold text-sf-text mb-4">Sustainability Impact</h3>
+                  <div class="flex flex-col items-center">
+                    <div class="relative w-32 h-32 mb-4">
+                      <svg class="w-32 h-32 transform -rotate-90">
+                        <circle cx="64" cy="64" r="56" stroke="#DDDBDA" stroke-width="12" fill="none"/>
+                        <circle id="sustainabilityRing" cx="64" cy="64" r="56" stroke="#2E844A" stroke-width="12" fill="none" stroke-dasharray="352" stroke-dashoffset="70" stroke-linecap="round"/>
+                      </svg>
+                      <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="text-2xl font-bold text-sf-success" id="sustainabilityValue">80%</span>
+                      </div>
+                    </div>
+                    <div class="text-center">
+                      <p class="text-sf-text font-medium">Carbon Footprint Reduced</p>
+                      <p class="text-sf-gray text-sm mt-1"><span id="co2Saved">12.4</span> tons CO₂ saved</p>
+                    </div>
+                    <div class="w-full mt-4 space-y-2">
+                      <div class="flex justify-between text-sm">
+                        <span class="text-sf-gray">Truck rolls avoided</span>
+                        <span class="text-sf-text font-medium" id="truckRollsAvoided">1,847</span>
+                      </div>
+                      <div class="flex justify-between text-sm">
+                        <span class="text-sf-gray">Miles not driven</span>
+                        <span class="text-sf-text font-medium" id="milesNotDriven">46,175</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Common Issues -->
+              <div class="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-sf-bg rounded-lg p-5">
+                  <h3 class="text-lg font-semibold text-sf-text mb-4">Common Issues by Product</h3>
+                  <div class="h-64">
+                    <canvas id="issuesByProductChart"></canvas>
+                  </div>
+                </div>
+
+                <div class="bg-sf-bg rounded-lg p-5">
+                  <h3 class="text-lg font-semibold text-sf-text mb-4">Issues by Region</h3>
+                  <div class="h-64">
+                    <canvas id="issuesByRegionChart"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product Maintenance Analysis -->
+              <div class="mt-6 bg-sf-bg rounded-lg p-5">
+                <h3 class="text-lg font-semibold text-sf-text mb-4">Product Price vs Maintenance Rate</h3>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-sm">
+                    <thead>
+                      <tr class="border-b border-sf-border">
+                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Product</th>
+                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Price Tier</th>
+                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Maintenance Rate</th>
+                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Avg. Resolution Time</th>
+                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Value Score</th>
+                      </tr>
+                    </thead>
+                    <tbody id="maintenanceTableBody">
+                      <!-- Populated by JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recommendations Panel -->
+            <div id="recommendations-panel" class="tab-panel hidden" role="tabpanel" aria-labelledby="recommendations-tab">
+              <div class="space-y-4" id="recommendationsList">
+                <!-- Populated by JS -->
+              </div>
+
+              <!-- Agent Loop Section -->
+              <div class="mt-8">
+                <h3 class="text-lg font-semibold text-sf-text mb-4">Agentforce Integration Signals</h3>
+                <div class="bg-sf-bg rounded-lg p-5">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
+                      <div class="flex items-center gap-3 mb-3">
+                        <div class="p-2 bg-sf-blue/10 rounded-lg">
+                          <svg class="w-5 h-5 text-sf-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                          </svg>
+                        </div>
+                        <h4 class="font-medium text-sf-text">High Confidence Routing</h4>
+                      </div>
+                      <p class="text-sf-gray text-sm">Sessions with >95% confidence are auto-resolved by Sophie.</p>
+                      <p class="text-sf-text font-medium mt-2"><span id="highConfidenceCount">847</span> sessions auto-resolved this period</p>
+                    </div>
+
+                    <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
+                      <div class="flex items-center gap-3 mb-3">
+                        <div class="p-2 bg-sf-warning/10 rounded-lg">
+                          <svg class="w-5 h-5 text-sf-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                          </svg>
+                        </div>
+                        <h4 class="font-medium text-sf-text">Low Accuracy Alert</h4>
+                      </div>
+                      <p class="text-sf-gray text-sm">Triggered when accuracy drops below 70% for 100+ sessions.</p>
+                      <p class="text-sf-success font-medium mt-2">No alerts triggered</p>
+                    </div>
+
+                    <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
+                      <div class="flex items-center gap-3 mb-3">
+                        <div class="p-2 bg-sf-success/10 rounded-lg">
+                          <svg class="w-5 h-5 text-sf-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                          </svg>
+                        </div>
+                        <h4 class="font-medium text-sf-text">Similar Issues Learning</h4>
+                      </div>
+                      <p class="text-sf-gray text-sm">Low confidence outputs trigger historical pattern matching.</p>
+                      <p class="text-sf-text font-medium mt-2"><span id="patternMatchCount">23</span> resolutions suggested from history</p>
+                    </div>
+
+                    <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
+                      <div class="flex items-center gap-3 mb-3">
+                        <div class="p-2 bg-sf-blue-light/10 rounded-lg">
+                          <svg class="w-5 h-5 text-sf-blue-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                          </svg>
+                        </div>
+                        <h4 class="font-medium text-sf-text">Visual Cross-Reference</h4>
+                      </div>
+                      <p class="text-sf-gray text-sm">Visual input compared against historical data for grounding.</p>
+                      <p class="text-sf-text font-medium mt-2"><span id="crossRefCount">156</span> enriched decisions this period</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+                <!-- Footer -->
+                <footer class="text-center text-gray-400 text-sm py-4">
+                  <p>Value Meter • Sophie Visual AI • Data refreshed <span id="lastRefresh">2 minutes ago</span></p>
+                </footer>
+              </main>
+            </div>
+
+            <!-- Consumption Cards View (Placeholder) -->
+            <div id="consumption-view" class="studio-view hidden p-6">
+              <div class="bg-white rounded-lg border border-gray-200 p-8 text-center">
+                <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                <p class="text-gray-500">Consumption Cards</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
