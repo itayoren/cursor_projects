@@ -143,22 +143,22 @@
                 <div class="flex items-center gap-3 mb-3">
                   <div class="p-2 bg-sf-blue/10 rounded-lg">
                     <svg class="w-5 h-5 text-sf-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                     </svg>
                   </div>
-                  <h3 class="font-semibold text-sf-text">ROI Question</h3>
+                  <h3 class="font-semibold text-sf-text">Performance</h3>
                 </div>
-                <p class="text-sf-gray">"What's the ROI of using Sophie?"</p>
+                <p class="text-sf-gray">"How is Sophie affecting my agent's service experience?"</p>
               </div>
               
               <div class="bg-sf-card rounded-xl p-5 border border-sf-border">
                 <div class="flex items-center gap-3 mb-3">
                   <div class="p-2 bg-sf-success/10 rounded-lg">
                     <svg class="w-5 h-5 text-sf-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                     </svg>
                   </div>
-                  <h3 class="font-semibold text-sf-text">Improvement Question</h3>
+                  <h3 class="font-semibold text-sf-text">Business Insights</h3>
                 </div>
                 <p class="text-sf-gray">"How can I improve my business using Sophie?"</p>
               </div>
@@ -180,31 +180,47 @@
               </div>
             </div>
 
-            <!-- Solution -->
-            <h1 class="text-3xl font-bold text-sf-text mb-6">Solution</h1>
-            
-            <div class="bg-sf-card rounded-xl p-6 border border-sf-border mb-6">
-              <p class="text-sf-text leading-relaxed text-lg">
-                The <strong>Value Meter dashboard experience</strong> transforms raw operational performance data into actionable business insights within the Agentforce ecosystem.
-              </p>
-            </div>
-            
-            <div class="bg-sf-card rounded-xl p-6 border border-sf-border">
-              <h3 class="font-semibold text-sf-text mb-4">It aims to help enterprise customers:</h3>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <span class="flex-shrink-0 w-6 h-6 bg-sf-blue/10 rounded-full flex items-center justify-center text-sf-blue text-sm">1</span>
-                  <span class="text-sf-text">Visualize the <strong>tangible ROI</strong> of the Sophie AI platform</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="flex-shrink-0 w-6 h-6 bg-sf-blue/10 rounded-full flex items-center justify-center text-sf-blue text-sm">2</span>
-                  <span class="text-sf-text">Focus on <strong>service efficiency</strong> and <strong>cost reduction</strong></span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="flex-shrink-0 w-6 h-6 bg-sf-blue/10 rounded-full flex items-center justify-center text-sf-blue text-sm">3</span>
-                  <span class="text-sf-text">Understand <strong>customer pain points</strong>, common failures, and ways to improve their offering</span>
-                </li>
-              </ul>
+            <!-- Solution (Collapsible) -->
+            <div class="solution-collapsible">
+              <button 
+                id="solution-toggle" 
+                class="w-full flex items-center justify-between text-left cursor-pointer group"
+                onclick="toggleSolution()"
+                tabindex="0"
+                aria-expanded="false"
+                aria-controls="solution-content"
+              >
+                <h1 class="text-3xl font-bold text-sf-text group-hover:text-sf-blue transition-colors">Solution</h1>
+                <svg id="solution-chevron" class="w-6 h-6 text-sf-gray transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+              
+              <div id="solution-content" class="hidden mt-6 solution-content">
+                <div class="bg-sf-card rounded-xl p-6 border border-sf-border mb-6">
+                  <p class="text-sf-text leading-relaxed text-lg">
+                    The <strong>Value Meter dashboard experience</strong> transforms raw operational performance data into actionable business insights within the Agentforce ecosystem.
+                  </p>
+                </div>
+                
+                <div class="bg-sf-card rounded-xl p-6 border border-sf-border">
+                  <h3 class="font-semibold text-sf-text mb-4">It aims to help enterprise customers:</h3>
+                  <ul class="space-y-3">
+                    <li class="flex items-start gap-3">
+                      <span class="flex-shrink-0 w-6 h-6 bg-sf-blue/10 rounded-full flex items-center justify-center text-sf-blue text-sm">1</span>
+                      <span class="text-sf-text">Visualize the <strong>tangible ROI</strong> of the Sophie AI platform</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <span class="flex-shrink-0 w-6 h-6 bg-sf-blue/10 rounded-full flex items-center justify-center text-sf-blue text-sm">2</span>
+                      <span class="text-sf-text">Focus on <strong>service efficiency</strong> and <strong>cost reduction</strong></span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <span class="flex-shrink-0 w-6 h-6 bg-sf-blue/10 rounded-full flex items-center justify-center text-sf-blue text-sm">3</span>
+                      <span class="text-sf-text">Understand <strong>customer pain points</strong>, common failures, and ways to improve their offering</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </section>
 

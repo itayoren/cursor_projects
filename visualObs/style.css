@@ -21,6 +21,33 @@ body {
   opacity: 1;
 }
 
+/* Collapsible Solution section */
+.solution-collapsible {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1.5rem;
+}
+
+.solution-collapsible button:focus {
+  outline: 2px solid #0176d3;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.solution-content {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Problem statement fills viewport initially */
 #overview-section > h1:first-of-type,
 #overview-section > h1:first-of-type ~ .bg-sf-card:first-of-type,

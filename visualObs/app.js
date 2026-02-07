@@ -2,6 +2,24 @@
 // Mock data and chart configurations
 
 // ============================================
+// SOLUTION SECTION TOGGLE
+// ============================================
+
+const toggleSolution = () => {
+  const content = document.getElementById('solution-content');
+  const chevron = document.getElementById('solution-chevron');
+  const toggle = document.getElementById('solution-toggle');
+  
+  if (content && chevron && toggle) {
+    const isHidden = content.classList.contains('hidden');
+    
+    content.classList.toggle('hidden', !isHidden);
+    chevron.classList.toggle('rotate-180', isHidden);
+    toggle.setAttribute('aria-expanded', isHidden);
+  }
+};
+
+// ============================================
 // MAIN TAB NAVIGATION (PRD vs Prototype)
 // ============================================
 
