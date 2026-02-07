@@ -1122,26 +1122,31 @@
               <main class="p-6">
         <!-- Summary Cards -->
         <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6" aria-label="Key Performance Indicators">
-          <!-- ROI Card (First) -->
-          <div class="bg-sf-card rounded-xl shadow-sm p-5 border border-sf-border hover:shadow-md transition-shadow">
+          <!-- ROI Card (First) - Green themed -->
+          <div class="bg-sf-card rounded-xl shadow-sm p-5 border border-sf-success/30 hover:shadow-md transition-shadow group relative cursor-help">
             <div class="flex items-start justify-between">
               <div>
                 <p class="text-sf-gray text-sm font-medium">Estimated ROI</p>
-                <p class="text-3xl font-bold text-sf-text mt-1" id="roiValue">$284K</p>
+                <p class="text-3xl font-bold text-sf-success mt-1" id="roiValue">$284K</p>
                 <div class="flex items-center gap-1 mt-2">
                   <span class="text-sf-gray text-xs" id="roiSubtext">Saved in truck rolls</span>
                 </div>
               </div>
-              <div class="p-3 bg-sf-blue-light/10 rounded-lg">
-                <svg class="w-6 h-6 text-sf-blue-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="p-3 bg-sf-success/10 rounded-lg">
+                <svg class="w-6 h-6 text-sf-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
               </div>
             </div>
+            <!-- Tooltip -->
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none w-64 z-50">
+              <strong>Calculation:</strong> Visual Deflections × Average Truck Roll Cost. Represents total savings from issues resolved remotely via Sophie instead of dispatching technicians.
+              <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
+            </div>
           </div>
 
           <!-- FTR Card -->
-          <div class="bg-sf-card rounded-xl shadow-sm p-5 border border-sf-border hover:shadow-md transition-shadow">
+          <div class="bg-sf-card rounded-xl shadow-sm p-5 border border-sf-border hover:shadow-md transition-shadow group relative cursor-help">
             <div class="flex items-start justify-between">
               <div>
                 <p class="text-sf-gray text-sm font-medium">First-Time Resolution</p>
@@ -1162,10 +1167,15 @@
                 </svg>
               </div>
             </div>
+            <!-- Tooltip -->
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none w-64 z-50">
+              <strong>Calculation:</strong> (Sessions resolved on first attempt ÷ Total sessions) × 100. Measures Sophie's ability to resolve issues without requiring follow-up interactions.
+              <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
+            </div>
           </div>
 
           <!-- Visual Accuracy Card -->
-          <div class="bg-sf-card rounded-xl shadow-sm p-5 border border-sf-border hover:shadow-md transition-shadow">
+          <div class="bg-sf-card rounded-xl shadow-sm p-5 border border-sf-border hover:shadow-md transition-shadow group relative cursor-help">
             <div class="flex items-start justify-between">
               <div>
                 <p class="text-sf-gray text-sm font-medium">Visual Accuracy</p>
@@ -1187,13 +1197,19 @@
                 </svg>
               </div>
             </div>
+            <!-- Tooltip -->
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none w-64 z-50">
+              <strong>Calculation:</strong> (Correctly identified visual elements ÷ Total visual analyses) × 100. Measures Sophie's precision in recognizing devices, status indicators, and issues from images.
+              <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
+            </div>
           </div>
 
           <!-- Escalation Rate Card -->
-          <div class="bg-sf-card rounded-xl shadow-sm p-5 border border-sf-border hover:shadow-md transition-shadow">
+          <div class="bg-sf-card rounded-xl shadow-sm p-5 border border-sf-border hover:shadow-md transition-shadow group relative cursor-help">
             <div class="flex items-start justify-between">
               <div>
                 <p class="text-sf-gray text-sm font-medium">Escalation Rate</p>
+                <p class="text-xs text-sf-warning mb-1">(Sophie sessions only)</p>
                 <p class="text-3xl font-bold text-sf-text mt-1" id="escalationValue">8.7%</p>
                 <div class="flex items-center gap-1 mt-2">
                   <span class="text-sf-success text-sm font-medium flex items-center gap-1" id="escalationTrend">
@@ -1210,6 +1226,11 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
                 </svg>
               </div>
+            </div>
+            <!-- Tooltip -->
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none w-64 z-50">
+              <strong>Calculation:</strong> (Escalated sessions ÷ Total Sophie-invoked sessions) × 100. Only counts sessions where Sophie's visual AI action was invoked but required human escalation.
+              <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
             </div>
           </div>
         </section>
@@ -1291,77 +1312,134 @@
               <div class="mt-6">
                 <h3 class="text-lg font-semibold text-sf-text mb-4">Agentforce Integration Signals</h3>
                 <div class="bg-sf-bg rounded-lg p-5">
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
-                      <div class="flex items-center gap-3 mb-3">
-                        <div class="p-2 bg-sf-blue/10 rounded-lg">
-                          <svg class="w-5 h-5 text-sf-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                          </svg>
+                  <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+                    <!-- Left Column: Signal List -->
+                    <div class="lg:col-span-2 space-y-3">
+                      <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
+                        <div class="flex items-center gap-3">
+                          <div class="p-2 bg-sf-blue/10 rounded-lg flex-shrink-0">
+                            <svg class="w-5 h-5 text-sf-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                          </div>
+                          <div class="flex-1 min-w-0">
+                            <h4 class="font-medium text-sf-text text-sm">High Confidence Routing</h4>
+                            <p class="text-sf-gray text-xs mt-1">Sessions with >95% confidence auto-resolved</p>
+                            <p class="text-sf-blue font-semibold mt-1"><span id="highConfidenceCount">847</span> sessions</p>
+                          </div>
                         </div>
-                        <h4 class="font-medium text-sf-text">High Confidence Routing</h4>
                       </div>
-                      <p class="text-sf-gray text-sm">Sessions with >95% confidence are auto-resolved by Sophie.</p>
-                      <p class="text-sf-text font-medium mt-2"><span id="highConfidenceCount">847</span> sessions auto-resolved this period</p>
+
+                      <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
+                        <div class="flex items-center gap-3">
+                          <div class="p-2 bg-sf-blue-light/10 rounded-lg flex-shrink-0">
+                            <svg class="w-5 h-5 text-sf-blue-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                            </svg>
+                          </div>
+                          <div class="flex-1 min-w-0">
+                            <h4 class="font-medium text-sf-text text-sm">Visual Cross-Reference</h4>
+                            <p class="text-sf-gray text-xs mt-1">Visual input compared with historical data</p>
+                            <p class="text-sf-blue-light font-semibold mt-1"><span id="crossRefCount">156</span> enriched decisions</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
+                        <div class="flex items-center gap-3">
+                          <div class="p-2 bg-sf-success/10 rounded-lg flex-shrink-0">
+                            <svg class="w-5 h-5 text-sf-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                            </svg>
+                          </div>
+                          <div class="flex-1 min-w-0">
+                            <h4 class="font-medium text-sf-text text-sm">Similar Issues Learning</h4>
+                            <p class="text-sf-gray text-xs mt-1">Low confidence triggers pattern matching</p>
+                            <p class="text-sf-success font-semibold mt-1"><span id="patternMatchCount">23</span> resolutions suggested</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
 
-                    <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
-                      <div class="flex items-center gap-3 mb-3">
-                        <div class="p-2 bg-sf-success/10 rounded-lg">
-                          <svg class="w-5 h-5 text-sf-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
-                          </svg>
-                        </div>
-                        <h4 class="font-medium text-sf-text">Similar Issues Learning</h4>
-                      </div>
-                      <p class="text-sf-gray text-sm">Low confidence outputs trigger historical pattern matching.</p>
-                      <p class="text-sf-text font-medium mt-2"><span id="patternMatchCount">23</span> resolutions suggested from history</p>
-                    </div>
-
-                    <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
-                      <div class="flex items-center gap-3 mb-3">
-                        <div class="p-2 bg-sf-blue-light/10 rounded-lg">
-                          <svg class="w-5 h-5 text-sf-blue-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-                          </svg>
-                        </div>
-                        <h4 class="font-medium text-sf-text">Visual Cross-Reference</h4>
-                      </div>
-                      <p class="text-sf-gray text-sm">Visual input compared against historical data for grounding.</p>
-                      <p class="text-sf-text font-medium mt-2"><span id="crossRefCount">156</span> enriched decisions this period</p>
-                    </div>
-
-                    <!-- Sophie Operative Funnel -->
-                    <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
-                      <div class="flex items-center gap-3 mb-3">
+                    <!-- Right Column: Sophie Operative Funnel -->
+                    <div class="lg:col-span-3 bg-sf-card rounded-lg p-6 border border-sf-border">
+                      <div class="flex items-center gap-3 mb-6">
                         <div class="p-2 bg-sf-warning/10 rounded-lg">
-                          <svg class="w-5 h-5 text-sf-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg class="w-6 h-6 text-sf-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
                           </svg>
                         </div>
-                        <h4 class="font-medium text-sf-text">Sophie Operative Funnel</h4>
+                        <h4 class="font-semibold text-sf-text text-lg">Sophie Operative Funnel</h4>
                       </div>
-                      <div class="space-y-2">
-                        <div class="flex items-center justify-between">
-                          <span class="text-sf-gray text-sm">Agentforce Sessions</span>
-                          <span class="text-sf-text font-medium">2,847</span>
+                      
+                      <!-- Funnel Visualization -->
+                      <div class="space-y-4">
+                        <!-- Agentforce Sessions -->
+                        <div class="group relative cursor-pointer">
+                          <div class="flex items-center gap-4">
+                            <div class="flex-1">
+                              <div class="bg-sf-blue/20 rounded-lg py-4 px-6 text-center relative overflow-hidden" style="clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);">
+                                <div class="relative z-10">
+                                  <p class="text-sf-blue font-bold text-2xl">2,847</p>
+                                  <p class="text-sf-text text-sm font-medium">Agentforce Sessions</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="w-16 text-right text-sm text-sf-gray">100%</div>
+                          </div>
+                          <div class="absolute left-0 top-full mt-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none w-64 z-50">
+                            Total sessions handled by Agentforce during the selected period
+                          </div>
                         </div>
-                        <div class="w-full bg-sf-border rounded-full h-2">
-                          <div class="bg-sf-blue h-2 rounded-full" style="width: 100%"></div>
+
+                        <!-- Arrow down -->
+                        <div class="flex justify-center">
+                          <svg class="w-6 h-6 text-sf-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                          </svg>
                         </div>
-                        <div class="flex items-center justify-between">
-                          <span class="text-sf-gray text-sm">Sophie Invoked</span>
-                          <span class="text-sf-text font-medium">1,924</span>
+
+                        <!-- Sophie Invoked -->
+                        <div class="group relative cursor-pointer">
+                          <div class="flex items-center gap-4">
+                            <div class="flex-1 px-4">
+                              <div class="bg-sf-blue-light/20 rounded-lg py-4 px-6 text-center relative overflow-hidden" style="clip-path: polygon(5% 0, 95% 0, 90% 100%, 10% 100%);">
+                                <div class="relative z-10">
+                                  <p class="text-sf-blue-light font-bold text-2xl">1,924</p>
+                                  <p class="text-sf-text text-sm font-medium">Sophie Invoked</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="w-16 text-right text-sm text-sf-gray">67.5%</div>
+                          </div>
+                          <div class="absolute left-0 top-full mt-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none w-64 z-50">
+                            Sessions where Sophie's visual AI action was triggered for visual analysis
+                          </div>
                         </div>
-                        <div class="w-full bg-sf-border rounded-full h-2">
-                          <div class="bg-sf-blue-light h-2 rounded-full" style="width: 67.5%"></div>
+
+                        <!-- Arrow down -->
+                        <div class="flex justify-center">
+                          <svg class="w-6 h-6 text-sf-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                          </svg>
                         </div>
-                        <div class="flex items-center justify-between">
-                          <span class="text-sf-gray text-sm">Successfully Contained</span>
-                          <span class="text-sf-success font-medium">1,512</span>
-                        </div>
-                        <div class="w-full bg-sf-border rounded-full h-2">
-                          <div class="bg-sf-success h-2 rounded-full" style="width: 53.1%"></div>
+
+                        <!-- Successfully Contained -->
+                        <div class="group relative cursor-pointer">
+                          <div class="flex items-center gap-4">
+                            <div class="flex-1 px-8">
+                              <div class="bg-sf-success/20 rounded-lg py-4 px-6 text-center relative overflow-hidden" style="clip-path: polygon(10% 0, 90% 0, 85% 100%, 15% 100%);">
+                                <div class="relative z-10">
+                                  <p class="text-sf-success font-bold text-2xl">1,512</p>
+                                  <p class="text-sf-text text-sm font-medium">Successfully Contained</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="w-16 text-right text-sm text-sf-success font-medium">53.1%</div>
+                          </div>
+                          <div class="absolute left-0 top-full mt-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none w-64 z-50">
+                            Sessions successfully resolved by Sophie without requiring human escalation
+                          </div>
                         </div>
                       </div>
                     </div>

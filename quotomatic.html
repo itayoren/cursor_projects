@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vibe Coding Quotes</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fdfbfb, #ebedee);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .quote-container {
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      max-width: 800px;
+      width: 90%;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 460px;
+      overflow-y: auto;
+    }
+    .quote-emoji {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+    .quote-text {
+      flex: 1;
+      overflow-y: auto;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: #333;
+      margin: 0 0 1rem;
+      line-height: 1.4;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+    .quote-author {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 1.5rem;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+    .fade-out {
+      opacity: 0;
+    }
+    #new-quote {
+      background: #6200ee;
+      color: #fff;
+      border: none;
+      outline: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    #new-quote:hover {
+      background: #4500b3;
+      transform: translateY(-2px);
+    }
+    #new-quote:active {
+      transform: translateY(0);
+    }
+    .shortcuts {
+      position: fixed;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      font-size: 0.75rem;
+      color: #aaa;
+      user-select: none;
+      z-index: 10;
+    }
+    .shortcuts .label {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .header h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      margin: 0;
+    }
+    .header h2 {
+      font-size: 1.25rem;
+      font-weight: 400;
+      font-style: italic;
+      color: #777;
+      margin: 0.5rem 0 0;
+    }
+    .header .attribution {
+      font-size: 0.75rem;
+      color: #999;
+      margin-top: 0.5rem;
+    }
+    .header .attribution a {
+      color: #999;
+      text-decoration: none;
+      text-decoration: underline;
+    }
+    .psy {
+      background: linear-gradient(-45deg, #ff0080, #ff8c00, #40e0d0, #ff0080);
+      background-size: 400% 400%;
+      animation: lava 10s ease infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    @keyframes lava {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    /* Auto-refresh timer controls */
+    .auto-timer {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .auto-timer input[type="number"] {
+      width: 5ch;
+      text-align: center;
+      margin: 0 0.25rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .auto-timer input[type="checkbox"] {
+      margin-right: 0.25rem;
+    }
+    /* iOS-style switch */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 20px;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 20px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 2px;
+      bottom: 2px;
+      background-color: #fff;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    .switch input:checked + .slider {
+      background-color: #6200ee;
+    }
+    .switch input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+    /* countdown bar */
+    .countdown {
+      height: 4px;
+      background: #eee;
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 0.5rem;
+    }
+    .countdown-bar {
+      height: 100%;
+      width: 0%;
+      background: #6200ee;
+      transition: width linear;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1><span class="psy">Vibe</span> Coding</h1>
+    <h2>Quote-O-Matic&trade;</h2>
+    <p class="attribution">
+      Quotes compiled by OpenAI’s o3 model. See <a href="https://chatgpt.com/share/680590d1-2718-8004-a0eb-67c43dc82965" target="_blank" rel="noopener noreferrer">ChatGPT transcript</a> for prompts and citation links. Coded in Cursor by o4 mini.
+    </p>
+  </div>
+  <div class="quote-container">
+    <div class="quote-emoji">🔄</div>
+    <div class="quote-text">Loading quote...</div>
+    <div class="quote-author"></div>
+    <button id="new-quote">New Quote</button>
+    <div class="auto-timer">
+      <label>
+        <span class="switch">
+          <input type="checkbox" id="auto-toggle">
+          <span class="slider"></span>
+        </span>
+        Auto refresh every
+        <input type="number" id="auto-interval" min="1" step="1" value="5"> seconds
+      </label>
+      <div class="countdown">
+        <div class="countdown-bar"></div>
+      </div>
+    </div>
+  </div>
+  <div class="shortcuts">
+    <div class="label">Keyboard shortcuts:</div>
+    ← Prev | Next →
+  </div>
+  <script>
+    const quotes = [
+      { text: "Vibe coding is having a moment. The term was coined by Andrej Karpathy just a few weeks ago (on February 6th) and has since been featured in the New York Times, Ars Technica, the Guardian and countless online discussions.", author: "Simon Willison, SimonWillison.net, 19 Mar 2025", emoji: "🔥" },
+      { text: "I'm concerned that the definition is already escaping its original intent. I'm seeing people apply the term 'vibe coding' to all forms of code written with the assistance of AI. I think that both dilutes the term and gives a false impression of what's possible with responsible AI‑assisted programming.", author: "Simon Willison, SimonWillison.net, 19 Mar 2025", emoji: "🤔" },
+      { text: "You don't have to know how to code to vibe code — just having an idea, and a little patience, is usually enough.", author: "Kevin Roose, The New York Times, 27 Feb 2025", emoji: "🙌" },
+      { text: "Vibe coding is already here. 75 percent of Replit projects are now written with AI assistance, and we're still just getting started.", author: "Amjad Masad, X, Feb 2025", emoji: "🚀" },
+      { text: "Vibe coding is more than a fleeting trend—it's a glimpse into the future of software development. It makes coding more accessible, speeds up everything, and honestly, it's just more fun.", author: "Ray Ray, Medium, 25 Mar 2025", emoji: "🎉" },
+      { text: "Balance it right and vibe coding could transform programming by 2030; it lets devs focus on creative solutions while AI handles the grunt work.", author: "Nucamp blog, 19 Apr 2025", emoji: "🔧" },
+      { text: "You know intelligence has been commoditized when CEOs start vibe coding!", author: "Satya Nadella, LinkedIn, 7 Apr 2025", emoji: "💼" },
+      { text: "Vibe coding with agents in natural language will change the game. Your stream of consciousness straight to code.", author: "Thomas Dohmke, X, Mar 2025", emoji: "🤖" },
+      { text: "So, there is no distinct 'Vibe Engineering'—just software engineering, perhaps involving less code typing than before.", author: "Sergey Tselovalnikov, serce.me blog, 31 Mar 2025", emoji: "💻" },
+      { text: "I cannot stress enough how awful I find the term 'vibe coding' and the whole concept. IMO coding assistants should supplement your skills; offloading everything to them is a quick way to deteriorate them.", author: "Dave McPherson, Bluesky, 5 Mar 2025", emoji: "⚠️" },
+      { text: "So Karpathy dropped this absolute gem about 'Vibe Coding' and I nearly spit my third coffee of the morning all over my keyboard. Now we're proud of not understanding our own code? Totally sustainable approach to Software Engineering.", author: "Kush Brahmbhatt, Kush Creates blog, 17 Mar 2025", emoji: "☕️" },
+      { text: "WHAT. THE. ACTUAL. FUCK. Oh cool, cool. So we're just smashing the 'Accept All' button like it's a game of Whack‑A‑Mole now? Some of us work on systems where 'Accept All' is the digital equivalent of playing Russian roulette with five bullets loaded.", author: "Kush Brahmbhatt, Kush Creates blog, 17 Mar 2025", emoji: "🤯" },
+      { text: "The actual definition of 'vibe coding' is 'surrender your intellectual agency to an AI and hope for the best.'", author: "James Ivings, X, 2025", emoji: "😱" },
+      { text: "When your best case is a 48.4 percent success rate, you're not ready for primetime… AI 'agents' are shit programmers. Thus vibe coding is a joke.", author: "Rafael Brown, LinkedIn, 15 Apr 2025", emoji: "🤡" },
+      { text: "I see vibe‑coding as essentially wielding a chainsaw blindfolded: you're trusting the chainsaw to do sane things when chainsaws have several known failure modes.", author: "Waleed Kadous, Medium, 14 Apr 2025", emoji: "🚧" },
+      { text: "Every time I have tried to do things in 'vibe‑code' style it has ended in disaster and took me several times longer than if I had reviewed the code all myself.", author: "Waleed Kadous, Medium, 14 Apr 2025", emoji: "😫" },
+      { text: "This belief—like many flawed takes humanity holds—comes from laziness, inexperience, and self‑deluding imagination. It is called 'Vibe Coding.'", author: "Cendyne, Cendyne.dev, 19 Mar 2025", emoji: "🧐" },
+      { text: "I cannot—and would not—trust a team member who vibe codes in a production application. The constant negligence I observe when 'Vibe Coding' is atrocious and unacceptable to a customer base of any size.", author: "Cendyne, Cendyne.dev, 19 Mar 2025", emoji: "🚫" },
+      { text: "Never accept AI‑written code into your codebase unreviewed.", author: "Addy Osmani, Substack, Apr 2025", emoji: "🔍" }
+    ];
+
+    const emojiEl = document.querySelector(".quote-emoji");
+    const textEl = document.querySelector(".quote-text");
+    const authorEl = document.querySelector(".quote-author");
+
+    let history = [];
+    let historyPos = -1;
+
+    const autoToggle = document.getElementById("auto-toggle");
+    const autoIntervalInput = document.getElementById("auto-interval");
+    const countdownBar = document.querySelector(".countdown-bar");
+    let timerID = null;
+
+    function startAuto() {
+      if (timerID) clearInterval(timerID);
+      const ms = parseInt(autoIntervalInput.value, 10) * 1000;
+      // restart countdown bar
+      countdownBar.style.transition = 'none';
+      countdownBar.style.width = '0%';
+      void countdownBar.offsetWidth; // force reflow
+      countdownBar.style.transition = `width ${ms}ms linear`;
+      countdownBar.style.width = '100%';
+      timerID = setInterval(showQuote, ms);
+    }
+
+    function stopAuto() {
+      if (timerID) clearInterval(timerID);
+      timerID = null;
+      // reset countdown bar
+      countdownBar.style.transition = 'none';
+      countdownBar.style.width = '0%';
+    }
+
+    function fadeToQuote(idx) {
+      const { text, author, emoji } = quotes[idx];
+      [emojiEl, textEl, authorEl].forEach(el => el.classList.add("fade-out"));
+      setTimeout(() => {
+        emojiEl.textContent = emoji;
+        textEl.textContent = text;
+        authorEl.textContent = `— ${author}`;
+        [emojiEl, textEl, authorEl].forEach(el => el.classList.remove("fade-out"));
+      }, 500);
+    }
+
+    function showQuote() {
+      let idx;
+      do {
+        idx = Math.floor(Math.random() * quotes.length);
+      } while (idx === history[historyPos]);
+      if (historyPos < history.length - 1) {
+        history = history.slice(0, historyPos + 1);
+      }
+      history.push(idx);
+      historyPos++;
+      fadeToQuote(idx);
+      if (autoToggle.checked) {
+        startAuto();
+      }
+    }
+
+    function showPrevious() {
+      if (historyPos > 0) {
+        historyPos--;
+        fadeToQuote(history[historyPos]);
+        if (autoToggle.checked) startAuto();
+      }
+    }
+
+    document.getElementById("new-quote").addEventListener("click", showQuote);
+    document.addEventListener("keydown", e => {
+      if (e.key === "ArrowRight") showQuote();
+      if (e.key === "ArrowLeft") showPrevious();
+    });
+    // toggle auto-refresh on/off and update interval
+    autoToggle.addEventListener('change', e => {
+      if (e.target.checked) startAuto(); else stopAuto();
+    });
+    autoIntervalInput.addEventListener('change', () => {
+      let val = parseInt(autoIntervalInput.value, 10);
+      if (isNaN(val) || val < 1) val = 1;
+      autoIntervalInput.value = val;
+      if (autoToggle.checked) startAuto();
+    });
+    window.addEventListener("DOMContentLoaded", showQuote);
+  </script>
+</body>
+</html> 
