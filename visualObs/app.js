@@ -217,16 +217,16 @@ const mockData = {
   },
   
   issuesByRegion: {
-    labels: ['Northeast', 'Southeast', 'Midwest', 'Southwest', 'West'],
-    values: [324, 287, 198, 256, 312]
+    labels: ['US', 'Middle East', 'Asia', 'Europe', 'Latin America'],
+    values: [412, 187, 298, 356, 224]
   },
   
   maintenanceData: [
-    { product: 'Router X500', priceTier: 'Premium', maintenanceRate: '4.2%', avgResTime: '8 min', valueScore: 94 },
-    { product: 'Modem M200', priceTier: 'Standard', maintenanceRate: '6.8%', avgResTime: '12 min', valueScore: 82 },
-    { product: 'TV Box Pro', priceTier: 'Premium', maintenanceRate: '9.1%', avgResTime: '15 min', valueScore: 71 },
-    { product: 'Smart Hub', priceTier: 'Premium', maintenanceRate: '3.5%', avgResTime: '6 min', valueScore: 96 },
-    { product: 'Camera S1', priceTier: 'Standard', maintenanceRate: '7.4%', avgResTime: '11 min', valueScore: 78 },
+    { product: 'Router X500', price: 299, maintenanceCost: 185, rate: 1.62 },
+    { product: 'Modem M200', price: 149, maintenanceCost: 112, rate: 1.33 },
+    { product: 'TV Box Pro', price: 199, maintenanceCost: 245, rate: 0.81 },
+    { product: 'Smart Hub', price: 349, maintenanceCost: 98, rate: 3.56 },
+    { product: 'Camera S1', price: 179, maintenanceCost: 156, rate: 1.15 },
   ],
   
   recommendations: [
@@ -599,20 +599,21 @@ const populateSessionsTable = () => {
 const populateMaintenanceTable = () => {
   const tbody = document.getElementById('maintenanceTableBody');
   tbody.innerHTML = mockData.maintenanceData.map(item => {
-    const scoreColor = item.valueScore >= 90 ? 'text-sf-success' : 
-                      item.valueScore >= 75 ? 'text-sf-warning' : 'text-sf-error';
+    const rateColor = item.rate >= 1.0 ? 'text-sf-success' : 'text-sf-error';
+    const statusText = item.rate >= 1.0 ? 'Good' : 'Needs Attention';
+    const statusClass = item.rate >= 1.0 ? 'bg-sf-success/10 text-sf-success' : 'bg-sf-error/10 text-sf-error';
     
     return `
       <tr>
         <td class="px-4 py-3 font-medium text-sf-text">${item.product}</td>
+        <td class="px-4 py-3 text-sf-text">$${item.price}</td>
+        <td class="px-4 py-3 text-sf-text">$${item.maintenanceCost}</td>
+        <td class="px-4 py-3 font-bold ${rateColor}">${item.rate.toFixed(2)}</td>
         <td class="px-4 py-3">
-          <span class="px-2 py-1 rounded-full text-xs font-medium ${item.priceTier === 'Premium' ? 'bg-sf-blue/10 text-sf-blue' : 'bg-sf-gray/10 text-sf-gray'}">
-            ${item.priceTier}
+          <span class="px-2 py-1 rounded-full text-xs font-medium ${statusClass}">
+            ${statusText}
           </span>
         </td>
-        <td class="px-4 py-3 text-sf-text">${item.maintenanceRate}</td>
-        <td class="px-4 py-3 text-sf-text">${item.avgResTime}</td>
-        <td class="px-4 py-3 font-bold ${scoreColor}">${item.valueScore}</td>
       </tr>
     `;
   }).join('');

@@ -1308,6 +1308,66 @@
                   </table>
                 </div>
               </div>
+
+              <!-- Agentforce Integration Signals -->
+              <div class="mt-6">
+                <h3 class="text-lg font-semibold text-sf-text mb-4">Agentforce Integration Signals</h3>
+                <div class="bg-sf-bg rounded-lg p-5">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
+                      <div class="flex items-center gap-3 mb-3">
+                        <div class="p-2 bg-sf-blue/10 rounded-lg">
+                          <svg class="w-5 h-5 text-sf-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                          </svg>
+                        </div>
+                        <h4 class="font-medium text-sf-text">High Confidence Routing</h4>
+                      </div>
+                      <p class="text-sf-gray text-sm">Sessions with >95% confidence are auto-resolved by Sophie.</p>
+                      <p class="text-sf-text font-medium mt-2"><span id="highConfidenceCount">847</span> sessions auto-resolved this period</p>
+                    </div>
+
+                    <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
+                      <div class="flex items-center gap-3 mb-3">
+                        <div class="p-2 bg-sf-success/10 rounded-lg">
+                          <svg class="w-5 h-5 text-sf-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                          </svg>
+                        </div>
+                        <h4 class="font-medium text-sf-text">Similar Issues Learning</h4>
+                      </div>
+                      <p class="text-sf-gray text-sm">Low confidence outputs trigger historical pattern matching.</p>
+                      <p class="text-sf-text font-medium mt-2"><span id="patternMatchCount">23</span> resolutions suggested from history</p>
+                    </div>
+
+                    <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
+                      <div class="flex items-center gap-3 mb-3">
+                        <div class="p-2 bg-sf-blue-light/10 rounded-lg">
+                          <svg class="w-5 h-5 text-sf-blue-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                          </svg>
+                        </div>
+                        <h4 class="font-medium text-sf-text">Visual Cross-Reference</h4>
+                      </div>
+                      <p class="text-sf-gray text-sm">Visual input compared against historical data for grounding.</p>
+                      <p class="text-sf-text font-medium mt-2"><span id="crossRefCount">156</span> enriched decisions this period</p>
+                    </div>
+
+                    <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
+                      <div class="flex items-center gap-3 mb-3">
+                        <div class="p-2 bg-sf-warning/10 rounded-lg">
+                          <svg class="w-5 h-5 text-sf-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                          </svg>
+                        </div>
+                        <h4 class="font-medium text-sf-text">Performance Analytics</h4>
+                      </div>
+                      <p class="text-sf-gray text-sm">Real-time monitoring of Sophie's resolution effectiveness.</p>
+                      <p class="text-sf-text font-medium mt-2">78.5% FTR rate this period</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <!-- Business Insights Panel -->
@@ -1315,7 +1375,8 @@
               <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <!-- ROI Calculator -->
                 <div class="lg:col-span-2 bg-sf-bg rounded-lg p-5">
-                  <h3 class="text-lg font-semibold text-sf-text mb-4">ROI Calculator</h3>
+                  <h3 class="text-lg font-semibold text-sf-text mb-2">ROI Calculator</h3>
+                  <p class="text-sf-gray text-sm mb-4">Calculates total savings based on visual deflections × truck roll cost. Values shown are <strong>accumulative</strong> since the beginning of the tracking period.</p>
                   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                     <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
                       <p class="text-sf-gray text-sm">Visual Deflections</p>
@@ -1394,16 +1455,17 @@
 
               <!-- Product Maintenance Analysis -->
               <div class="mt-6 bg-sf-bg rounded-lg p-5">
-                <h3 class="text-lg font-semibold text-sf-text mb-4">Product Price vs Maintenance Rate</h3>
+                <h3 class="text-lg font-semibold text-sf-text mb-2">Product Price / Maintenance Rate</h3>
+                <p class="text-sf-gray text-sm mb-4">This rate calculates the device's price by its average maintenance rate. Rates <strong class="text-sf-success">over 1.0 are good</strong> (product value exceeds maintenance cost), while rates <strong class="text-sf-error">lower than 1.0</strong> indicate maintenance costs exceed the product's value.</p>
                 <div class="overflow-x-auto">
                   <table class="w-full text-sm">
                     <thead>
                       <tr class="border-b border-sf-border">
                         <th class="px-4 py-3 text-left font-medium text-sf-gray">Product</th>
-                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Price Tier</th>
-                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Maintenance Rate</th>
-                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Avg. Resolution Time</th>
-                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Value Score</th>
+                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Price ($)</th>
+                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Avg. Maintenance Cost ($)</th>
+                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Price/Maintenance Rate</th>
+                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Status</th>
                       </tr>
                     </thead>
                     <tbody id="maintenanceTableBody">
@@ -1420,61 +1482,88 @@
                 <!-- Populated by JS -->
               </div>
 
-              <!-- Agent Loop Section -->
+              <!-- Configured Alerts Section -->
               <div class="mt-8">
-                <h3 class="text-lg font-semibold text-sf-text mb-4">Agentforce Integration Signals</h3>
+                <div class="flex items-center justify-between mb-4">
+                  <h3 class="text-lg font-semibold text-sf-text">Configured Alerts</h3>
+                  <a 
+                    href="#" 
+                    class="inline-flex items-center gap-2 px-4 py-2 bg-sf-blue text-white rounded-lg text-sm font-medium hover:bg-sf-blue-dark transition-colors"
+                    onclick="alert('Redirecting to Health & Monitoring...'); return false;"
+                  >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                    </svg>
+                    Create New Alert
+                  </a>
+                </div>
+                <p class="text-sf-gray text-sm mb-4">Alerts configured by your admin to monitor key performance thresholds.</p>
                 <div class="bg-sf-bg rounded-lg p-5">
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
-                      <div class="flex items-center gap-3 mb-3">
-                        <div class="p-2 bg-sf-blue/10 rounded-lg">
-                          <svg class="w-5 h-5 text-sf-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                          </svg>
+                  <div class="space-y-4">
+                    <!-- Low Accuracy Alert -->
+                    <div class="bg-sf-card rounded-lg p-4 border border-l-4 border-l-sf-warning border-sf-border">
+                      <div class="flex items-start justify-between">
+                        <div class="flex items-center gap-3">
+                          <div class="p-2 bg-sf-warning/10 rounded-lg">
+                            <svg class="w-5 h-5 text-sf-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                            </svg>
+                          </div>
+                          <div>
+                            <h4 class="font-medium text-sf-text">Low Accuracy Alert</h4>
+                            <p class="text-sf-gray text-sm">Triggers when visual accuracy drops below <strong>80%</strong> threshold</p>
+                          </div>
                         </div>
-                        <h4 class="font-medium text-sf-text">High Confidence Routing</h4>
+                        <span class="px-2 py-1 bg-sf-success/10 text-sf-success text-xs font-medium rounded">Active</span>
                       </div>
-                      <p class="text-sf-gray text-sm">Sessions with >95% confidence are auto-resolved by Sophie.</p>
-                      <p class="text-sf-text font-medium mt-2"><span id="highConfidenceCount">847</span> sessions auto-resolved this period</p>
+                      <div class="mt-3 pl-12 text-sm">
+                        <span class="text-sf-success font-medium">✓ No alerts triggered</span>
+                        <span class="text-sf-gray ml-2">• Current accuracy: 94.2%</span>
+                      </div>
                     </div>
 
-                    <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
-                      <div class="flex items-center gap-3 mb-3">
-                        <div class="p-2 bg-sf-warning/10 rounded-lg">
-                          <svg class="w-5 h-5 text-sf-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-                          </svg>
+                    <!-- High Escalation Alert -->
+                    <div class="bg-sf-card rounded-lg p-4 border border-l-4 border-l-sf-error border-sf-border">
+                      <div class="flex items-start justify-between">
+                        <div class="flex items-center gap-3">
+                          <div class="p-2 bg-sf-error/10 rounded-lg">
+                            <svg class="w-5 h-5 text-sf-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                            </svg>
+                          </div>
+                          <div>
+                            <h4 class="font-medium text-sf-text">High Escalation Rate Alert</h4>
+                            <p class="text-sf-gray text-sm">Triggers when escalation rate exceeds <strong>15%</strong> threshold</p>
+                          </div>
                         </div>
-                        <h4 class="font-medium text-sf-text">Low Accuracy Alert</h4>
+                        <span class="px-2 py-1 bg-sf-success/10 text-sf-success text-xs font-medium rounded">Active</span>
                       </div>
-                      <p class="text-sf-gray text-sm">Triggered when accuracy drops below 70% for 100+ sessions.</p>
-                      <p class="text-sf-success font-medium mt-2">No alerts triggered</p>
+                      <div class="mt-3 pl-12 text-sm">
+                        <span class="text-sf-success font-medium">✓ No alerts triggered</span>
+                        <span class="text-sf-gray ml-2">• Current rate: 8.7%</span>
+                      </div>
                     </div>
 
-                    <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
-                      <div class="flex items-center gap-3 mb-3">
-                        <div class="p-2 bg-sf-success/10 rounded-lg">
-                          <svg class="w-5 h-5 text-sf-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
-                          </svg>
+                    <!-- FTR Drop Alert -->
+                    <div class="bg-sf-card rounded-lg p-4 border border-l-4 border-l-sf-blue border-sf-border">
+                      <div class="flex items-start justify-between">
+                        <div class="flex items-center gap-3">
+                          <div class="p-2 bg-sf-blue/10 rounded-lg">
+                            <svg class="w-5 h-5 text-sf-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                          </div>
+                          <div>
+                            <h4 class="font-medium text-sf-text">FTR Drop Alert</h4>
+                            <p class="text-sf-gray text-sm">Triggers when First-Time Resolution drops below <strong>70%</strong></p>
+                          </div>
                         </div>
-                        <h4 class="font-medium text-sf-text">Similar Issues Learning</h4>
+                        <span class="px-2 py-1 bg-sf-success/10 text-sf-success text-xs font-medium rounded">Active</span>
                       </div>
-                      <p class="text-sf-gray text-sm">Low confidence outputs trigger historical pattern matching.</p>
-                      <p class="text-sf-text font-medium mt-2"><span id="patternMatchCount">23</span> resolutions suggested from history</p>
-                    </div>
-
-                    <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
-                      <div class="flex items-center gap-3 mb-3">
-                        <div class="p-2 bg-sf-blue-light/10 rounded-lg">
-                          <svg class="w-5 h-5 text-sf-blue-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-                          </svg>
-                        </div>
-                        <h4 class="font-medium text-sf-text">Visual Cross-Reference</h4>
+                      <div class="mt-3 pl-12 text-sm">
+                        <span class="text-sf-success font-medium">✓ No alerts triggered</span>
+                        <span class="text-sf-gray ml-2">• Current FTR: 78.5%</span>
                       </div>
-                      <p class="text-sf-gray text-sm">Visual input compared against historical data for grounding.</p>
-                      <p class="text-sf-text font-medium mt-2"><span id="crossRefCount">156</span> enriched decisions this period</p>
                     </div>
                   </div>
                 </div>
