@@ -41,7 +41,7 @@
           <path d="M16 6V10M16 22V26M6 16H10M22 16H26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
         <div>
-          <span class="text-xl font-bold">Value Meter PRD</span>
+          <span class="text-xl font-bold">Value Meter - The Eyes of Agentforce</span>
           <p class="text-xs opacity-70">Written by Itay Oren • Feb 2026</p>
         </div>
       </div>
@@ -215,47 +215,52 @@
               </div>
             </div>
 
-            <!-- Solution (Collapsible) -->
-            <div class="solution-collapsible">
-              <button 
-                id="solution-toggle" 
-                class="w-full flex items-center justify-between text-left cursor-pointer group"
-                onclick="toggleSolution()"
-                tabindex="0"
-                aria-expanded="false"
-                aria-controls="solution-content"
-              >
-                <h1 class="text-3xl font-bold text-sf-text group-hover:text-sf-blue transition-colors">Solution</h1>
-                <svg id="solution-chevron" class="w-6 h-6 text-sf-gray transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                </svg>
-              </button>
+            <!-- Solution Section -->
+            <div class="mt-12 relative">
+              <!-- Decorative gradient background -->
+              <div class="absolute inset-0 bg-gradient-to-br from-sf-blue/5 via-sf-blue-light/5 to-sf-success/5 rounded-2xl -z-10"></div>
               
-              <div id="solution-content" class="hidden mt-6 solution-content">
-                <div class="bg-sf-card rounded-xl p-6 border border-sf-border mb-6">
-                  <p class="text-sf-text leading-relaxed text-lg">
-                    The <strong>Value Meter dashboard experience</strong> transforms raw operational performance data into actionable business insights within the Agentforce ecosystem.
+              <div class="p-8">
+                <div class="flex items-center gap-4 mb-6">
+                  <div class="p-3 bg-gradient-to-br from-sf-blue to-sf-blue-light rounded-xl shadow-lg">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                    </svg>
+                  </div>
+                  <h1 class="text-3xl font-bold bg-gradient-to-r from-sf-blue to-sf-blue-light bg-clip-text text-transparent">Solution</h1>
+                </div>
+
+                <div class="bg-white/80 backdrop-blur rounded-xl p-6 border border-sf-blue/20 shadow-lg mb-6 transform hover:scale-[1.01] transition-transform">
+                  <p class="text-sf-text leading-relaxed text-xl">
+                    The <strong class="text-sf-blue">Value Meter dashboard experience</strong> transforms raw operational performance data into <em class="text-sf-success font-semibold">actionable business insights</em> within the Agentforce ecosystem.
                   </p>
                 </div>
                 
-                <div class="bg-sf-card rounded-xl p-6 border border-sf-border">
-                  <h3 class="font-semibold text-sf-text mb-4">It aims to help enterprise customers:</h3>
-                  <ul class="space-y-3">
-                    <li class="flex items-start gap-3">
-                      <span class="flex-shrink-0 w-6 h-6 bg-sf-blue/10 rounded-full flex items-center justify-center text-sf-blue text-sm">1</span>
-                      <span class="text-sf-text">Visualize the <strong>tangible ROI</strong> of the Sophie AI platform</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                      <span class="flex-shrink-0 w-6 h-6 bg-sf-blue/10 rounded-full flex items-center justify-center text-sf-blue text-sm">2</span>
-                      <span class="text-sf-text">Focus on <strong>service efficiency</strong> and <strong>cost reduction</strong></span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                      <span class="flex-shrink-0 w-6 h-6 bg-sf-blue/10 rounded-full flex items-center justify-center text-sf-blue text-sm">3</span>
-                      <span class="text-sf-text">Understand <strong>customer pain points</strong>, common failures, and ways to improve their offering</span>
-                    </li>
-                  </ul>
+                <div class="bg-white/80 backdrop-blur rounded-xl p-6 border border-sf-blue/20 shadow-lg">
+                  <h3 class="font-semibold text-sf-text mb-5 text-lg">It aims to help enterprise customers:</h3>
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-gradient-to-br from-sf-blue/10 to-sf-blue/5 rounded-xl p-5 border border-sf-blue/20 hover:shadow-md transition-shadow">
+                      <div class="w-10 h-10 bg-sf-blue rounded-full flex items-center justify-center text-white font-bold text-lg mb-3">1</div>
+                      <p class="text-sf-text">Visualize the <strong class="text-sf-blue">tangible ROI</strong> of the Sophie AI platform</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-sf-success/10 to-sf-success/5 rounded-xl p-5 border border-sf-success/20 hover:shadow-md transition-shadow">
+                      <div class="w-10 h-10 bg-sf-success rounded-full flex items-center justify-center text-white font-bold text-lg mb-3">2</div>
+                      <p class="text-sf-text">Focus on <strong class="text-sf-success">service efficiency</strong> and <strong class="text-sf-success">cost reduction</strong></p>
+                    </div>
+                    <div class="bg-gradient-to-br from-sf-warning/10 to-sf-warning/5 rounded-xl p-5 border border-sf-warning/20 hover:shadow-md transition-shadow">
+                      <div class="w-10 h-10 bg-sf-warning rounded-full flex items-center justify-center text-white font-bold text-lg mb-3">3</div>
+                      <p class="text-sf-text">Understand <strong class="text-sf-warning">customer pain points</strong>, common failures, and ways to improve</p>
+                    </div>
+                  </div>
                 </div>
               </div>
+            </div>
+
+            <!-- Vision Statement -->
+            <div class="mt-16 mb-8 py-12 px-8 bg-gradient-to-r from-sf-blue-dark via-sf-blue to-sf-blue-light rounded-2xl shadow-xl">
+              <p class="text-2xl md:text-3xl font-semibold text-white text-center leading-relaxed italic">
+                "This will move TechSee from being a 'tool agents use' to the <span class="text-yellow-300">brain driving the service operation</span>, creating a sticky, high-value relationship with our enterprise customers."
+              </p>
             </div>
           </section>
 
