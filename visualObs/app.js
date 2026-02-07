@@ -48,6 +48,9 @@ const initMainTabs = () => {
       initAllCharts();
       window.chartsInitialized = true;
     }
+    
+    // Scroll to top when switching main tabs
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   
   mainTabBtns.forEach(btn => {
@@ -141,8 +144,8 @@ const initPrdNav = () => {
       section.classList.toggle('hidden', !isTarget);
     });
     
-    // Scroll to top of content
-    window.scrollTo({ top: 64, behavior: 'smooth' });
+    // Scroll to top of content (0 to show header)
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   
   navBtns.forEach(btn => {
