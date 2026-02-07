@@ -1287,28 +1287,6 @@
                 </div>
               </div>
 
-              <!-- Sessions Table -->
-              <div class="mt-6">
-                <h3 class="text-lg font-semibold text-sf-text mb-4">Recent Visual Sessions</h3>
-                <div class="overflow-x-auto">
-                  <table class="w-full text-sm">
-                    <thead>
-                      <tr class="bg-sf-bg">
-                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Session ID</th>
-                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Device</th>
-                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Confidence</th>
-                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Resolution</th>
-                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Status</th>
-                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Time</th>
-                      </tr>
-                    </thead>
-                    <tbody id="sessionsTableBody">
-                      <!-- Populated by JS -->
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
               <!-- Agentforce Integration Signals -->
               <div class="mt-6">
                 <h3 class="text-lg font-semibold text-sf-text mb-4">Agentforce Integration Signals</h3>
@@ -1353,19 +1331,63 @@
                       <p class="text-sf-text font-medium mt-2"><span id="crossRefCount">156</span> enriched decisions this period</p>
                     </div>
 
+                    <!-- Sophie Operative Funnel -->
                     <div class="bg-sf-card rounded-lg p-4 border border-sf-border">
                       <div class="flex items-center gap-3 mb-3">
                         <div class="p-2 bg-sf-warning/10 rounded-lg">
                           <svg class="w-5 h-5 text-sf-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
                           </svg>
                         </div>
-                        <h4 class="font-medium text-sf-text">Performance Analytics</h4>
+                        <h4 class="font-medium text-sf-text">Sophie Operative Funnel</h4>
                       </div>
-                      <p class="text-sf-gray text-sm">Real-time monitoring of Sophie's resolution effectiveness.</p>
-                      <p class="text-sf-text font-medium mt-2">78.5% FTR rate this period</p>
+                      <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                          <span class="text-sf-gray text-sm">Agentforce Sessions</span>
+                          <span class="text-sf-text font-medium">2,847</span>
+                        </div>
+                        <div class="w-full bg-sf-border rounded-full h-2">
+                          <div class="bg-sf-blue h-2 rounded-full" style="width: 100%"></div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                          <span class="text-sf-gray text-sm">Sophie Invoked</span>
+                          <span class="text-sf-text font-medium">1,924</span>
+                        </div>
+                        <div class="w-full bg-sf-border rounded-full h-2">
+                          <div class="bg-sf-blue-light h-2 rounded-full" style="width: 67.5%"></div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                          <span class="text-sf-gray text-sm">Successfully Contained</span>
+                          <span class="text-sf-success font-medium">1,512</span>
+                        </div>
+                        <div class="w-full bg-sf-border rounded-full h-2">
+                          <div class="bg-sf-success h-2 rounded-full" style="width: 53.1%"></div>
+                        </div>
+                      </div>
                     </div>
                   </div>
+                </div>
+              </div>
+
+              <!-- Sessions Table (at the bottom) -->
+              <div class="mt-6">
+                <h3 class="text-lg font-semibold text-sf-text mb-4">Recent Visual Sessions</h3>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-sm">
+                    <thead>
+                      <tr class="bg-sf-bg">
+                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Session ID</th>
+                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Device</th>
+                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Confidence</th>
+                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Resolution</th>
+                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Status</th>
+                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Time</th>
+                      </tr>
+                    </thead>
+                    <tbody id="sessionsTableBody">
+                      <!-- Populated by JS -->
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
@@ -1466,6 +1488,7 @@
                         <th class="px-4 py-3 text-left font-medium text-sf-gray">Avg. Maintenance Cost ($)</th>
                         <th class="px-4 py-3 text-left font-medium text-sf-gray">Price/Maintenance Rate</th>
                         <th class="px-4 py-3 text-left font-medium text-sf-gray">Status</th>
+                        <th class="px-4 py-3 text-left font-medium text-sf-gray">Actions</th>
                       </tr>
                     </thead>
                     <tbody id="maintenanceTableBody">

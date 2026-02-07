@@ -602,6 +602,7 @@ const populateMaintenanceTable = () => {
     const rateColor = item.rate >= 1.0 ? 'text-sf-success' : 'text-sf-error';
     const statusText = item.rate >= 1.0 ? 'Good' : 'Needs Attention';
     const statusClass = item.rate >= 1.0 ? 'bg-sf-success/10 text-sf-success' : 'bg-sf-error/10 text-sf-error';
+    const productSlug = item.product.toLowerCase().replace(/\s+/g, '-');
     
     return `
       <tr>
@@ -613,6 +614,18 @@ const populateMaintenanceTable = () => {
           <span class="px-2 py-1 rounded-full text-xs font-medium ${statusClass}">
             ${statusText}
           </span>
+        </td>
+        <td class="px-4 py-3">
+          <button 
+            onclick="alert('Opening Agentforce sessions for ${item.product}...')"
+            class="inline-flex items-center gap-1 px-3 py-1.5 bg-sf-blue/10 text-sf-blue text-xs font-medium rounded-lg hover:bg-sf-blue/20 transition-colors"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+            </svg>
+            Review Sessions
+          </button>
         </td>
       </tr>
     `;
