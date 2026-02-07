@@ -1062,7 +1062,7 @@
                     <p class="text-sm text-gray-500">Sophie Visual AI Performance</p>
                   </div>
                 </div>
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-3 flex-wrap">
                   <div class="flex items-center gap-2 bg-gray-100 rounded-lg px-3 py-2">
                     <label for="dateRange" class="text-sm text-gray-500">Period:</label>
                     <select id="dateRange" class="bg-transparent border-none text-gray-700 text-sm focus:outline-none cursor-pointer" aria-label="Select date range">
@@ -1070,6 +1070,39 @@
                       <option value="30d" selected>Last 30 Days</option>
                       <option value="90d">Last 90 Days</option>
                       <option value="ytd">Year to Date</option>
+                    </select>
+                  </div>
+                  <div class="flex items-center gap-2 bg-gray-100 rounded-lg px-3 py-2">
+                    <label for="deviceFilter" class="text-sm text-gray-500">Device:</label>
+                    <select id="deviceFilter" class="bg-transparent border-none text-gray-700 text-sm focus:outline-none cursor-pointer" aria-label="Select device">
+                      <option value="all" selected>All Devices</option>
+                      <option value="router">Router X500</option>
+                      <option value="modem">Modem M200</option>
+                      <option value="tvbox">TV Box Pro</option>
+                      <option value="smarthub">Smart Hub</option>
+                      <option value="camera">Camera S1</option>
+                    </select>
+                  </div>
+                  <div class="flex items-center gap-2 bg-gray-100 rounded-lg px-3 py-2">
+                    <label for="geoFilter" class="text-sm text-gray-500">Region:</label>
+                    <select id="geoFilter" class="bg-transparent border-none text-gray-700 text-sm focus:outline-none cursor-pointer" aria-label="Select geo-location">
+                      <option value="all" selected>All Regions</option>
+                      <option value="us">US</option>
+                      <option value="me">Middle East</option>
+                      <option value="asia">Asia</option>
+                      <option value="eu">Europe</option>
+                      <option value="latam">Latin America</option>
+                    </select>
+                  </div>
+                  <div class="flex items-center gap-2 bg-gray-100 rounded-lg px-3 py-2">
+                    <label for="segmentFilter" class="text-sm text-gray-500">Segment:</label>
+                    <select id="segmentFilter" class="bg-transparent border-none text-gray-700 text-sm focus:outline-none cursor-pointer" aria-label="Select customer segment">
+                      <option value="all" selected>All Segments</option>
+                      <option value="new">New</option>
+                      <option value="atrisk">At-risk</option>
+                      <option value="vip">VIP</option>
+                      <option value="silver">Silver</option>
+                      <option value="churned">Churned</option>
                     </select>
                   </div>
                   <button 
@@ -1089,6 +1122,24 @@
               <main class="p-6">
         <!-- Summary Cards -->
         <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6" aria-label="Key Performance Indicators">
+          <!-- ROI Card (First) -->
+          <div class="bg-sf-card rounded-xl shadow-sm p-5 border border-sf-border hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between">
+              <div>
+                <p class="text-sf-gray text-sm font-medium">Estimated ROI</p>
+                <p class="text-3xl font-bold text-sf-text mt-1" id="roiValue">$284K</p>
+                <div class="flex items-center gap-1 mt-2">
+                  <span class="text-sf-gray text-xs" id="roiSubtext">Saved in truck rolls</span>
+                </div>
+              </div>
+              <div class="p-3 bg-sf-blue-light/10 rounded-lg">
+                <svg class="w-6 h-6 text-sf-blue-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
           <!-- FTR Card -->
           <div class="bg-sf-card rounded-xl shadow-sm p-5 border border-sf-border hover:shadow-md transition-shadow">
             <div class="flex items-start justify-between">
@@ -1161,24 +1212,6 @@
               </div>
             </div>
           </div>
-
-          <!-- ROI Card -->
-          <div class="bg-sf-card rounded-xl shadow-sm p-5 border border-sf-border hover:shadow-md transition-shadow">
-            <div class="flex items-start justify-between">
-              <div>
-                <p class="text-sf-gray text-sm font-medium">Estimated ROI</p>
-                <p class="text-3xl font-bold text-sf-text mt-1" id="roiValue">$284K</p>
-                <div class="flex items-center gap-1 mt-2">
-                  <span class="text-sf-gray text-xs" id="roiSubtext">Saved in truck rolls</span>
-                </div>
-              </div>
-              <div class="p-3 bg-sf-blue-light/10 rounded-lg">
-                <svg class="w-6 h-6 text-sf-blue-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-              </div>
-            </div>
-          </div>
         </section>
 
         <!-- Tab Navigation -->
@@ -1186,9 +1219,19 @@
           <nav class="flex border-b border-sf-border" role="tablist" aria-label="Dashboard sections">
             <button 
               class="tab-btn active px-6 py-4 text-sm font-medium border-b-2 border-sf-blue text-sf-blue"
-              data-tab="operational"
+              data-tab="recommendations"
               role="tab"
               aria-selected="true"
+              aria-controls="recommendations-panel"
+              tabindex="0"
+            >
+              Recommendations
+            </button>
+            <button 
+              class="tab-btn px-6 py-4 text-sm font-medium border-b-2 border-transparent text-sf-gray hover:text-sf-text"
+              data-tab="operational"
+              role="tab"
+              aria-selected="false"
               aria-controls="operational-panel"
               tabindex="0"
             >
@@ -1204,22 +1247,12 @@
             >
               Business Insights
             </button>
-            <button 
-              class="tab-btn px-6 py-4 text-sm font-medium border-b-2 border-transparent text-sf-gray hover:text-sf-text"
-              data-tab="recommendations"
-              role="tab"
-              aria-selected="false"
-              aria-controls="recommendations-panel"
-              tabindex="0"
-            >
-              Recommendations
-            </button>
           </nav>
 
           <!-- Tab Panels -->
           <div class="p-6">
             <!-- Operational KPIs Panel -->
-            <div id="operational-panel" class="tab-panel" role="tabpanel" aria-labelledby="operational-tab">
+            <div id="operational-panel" class="tab-panel hidden" role="tabpanel" aria-labelledby="operational-tab">
               <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- FTR Comparison Chart -->
                 <div class="bg-sf-bg rounded-lg p-5">
@@ -1382,7 +1415,7 @@
             </div>
 
             <!-- Recommendations Panel -->
-            <div id="recommendations-panel" class="tab-panel hidden" role="tabpanel" aria-labelledby="recommendations-tab">
+            <div id="recommendations-panel" class="tab-panel" role="tabpanel" aria-labelledby="recommendations-tab">
               <div class="space-y-4" id="recommendationsList">
                 <!-- Populated by JS -->
               </div>
