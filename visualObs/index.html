@@ -522,16 +522,6 @@
                 <div class="flex items-start gap-4">
                   <span class="flex-shrink-0 w-8 h-8 bg-sf-success/10 rounded-full flex items-center justify-center text-sf-success font-bold">2</span>
                   <div>
-                    <h3 class="font-semibold text-sf-text mb-2">High Confidence Routing</h3>
-                    <p class="text-sf-gray text-sm">When understanding the user's request at the start of the session, the agent can call an action to query Value Meter's data (i.e. what's the resolution confidence for this device type) and route high confidence resolutions directly to Sophie.</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="bg-sf-card rounded-xl p-6 border border-sf-border">
-                <div class="flex items-start gap-4">
-                  <span class="flex-shrink-0 w-8 h-8 bg-sf-warning/10 rounded-full flex items-center justify-center text-sf-warning font-bold">3</span>
-                  <div>
                     <h3 class="font-semibold text-sf-text mb-2">Low Accuracy Alert</h3>
                     <p class="text-sf-gray text-sm">On a given day, if the accuracy rate is constantly low to more than 70% of the sessions AND 100+ sessions, produce an alert to the agent admin and immediately escalate sessions by skipping Sophie's action triggering.</p>
                   </div>
@@ -540,7 +530,7 @@
               
               <div class="bg-sf-card rounded-xl p-6 border border-sf-border">
                 <div class="flex items-start gap-4">
-                  <span class="flex-shrink-0 w-8 h-8 bg-sf-blue-light/10 rounded-full flex items-center justify-center text-sf-blue-light font-bold">4</span>
+                  <span class="flex-shrink-0 w-8 h-8 bg-sf-warning/10 rounded-full flex items-center justify-center text-sf-warning font-bold">3</span>
                   <div>
                     <h3 class="font-semibold text-sf-text mb-2">Similar Issues Learning</h3>
                     <p class="text-sf-gray text-sm">When Sophie returns a low confidence output on a given device, an invocable action will be triggered to query STDM and look for similar use cases with successful resolution. These can be either Agent or Human resolved solutions and will be proposed to the end user.</p>
